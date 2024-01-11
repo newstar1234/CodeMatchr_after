@@ -1,0 +1,344 @@
+#userpage-wrapper {
+  width: 100%;
+  height: 1960px;
+
+  background-color: rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.userpage-wrapper-box {
+  margin: 30px;
+
+  background-color: rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.userpage-top-wrapper {
+  flex: 1;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 1400px;
+  height: 196px;
+
+  background-color: rgba(255,255,255,1);
+}
+
+.userpage-profile-box {
+  flex: 1;
+}
+
+.userpage-profile-image{
+  margin-left: 50px;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 120px;
+  
+  background-repeat: none;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+}
+
+.userpage-profile-image:hover {
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.userpage-user-info-box {
+  flex: 7;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.userpage-user-nickname-box {
+  flex: 3;
+  
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.userpage-user-nickname-input-box {
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+
+  text-shadow: 2px 2px 2px gray;
+
+  font-size: 30px;
+  font-weight: 600;
+
+  gap: 10px;
+}
+
+.userpage-user-nickname-input {
+  display: flex;
+
+  text-shadow: 2px 2px 2px gray;
+  box-sizing: border-box;
+
+  font-size: 30px;
+  font-weight: 600;
+
+  border-radius: 10px;
+  border: none;
+}
+
+.userpage-user-nickname {
+  display: flex;
+  flex-direction: column;
+
+  text-shadow: 2px 2px 2px gray;
+
+  font-size: 30px;
+  font-weight: 600;
+  box-sizing: border-box;
+
+  text-align: center;
+}
+
+.userpage-user-nickname-button {
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-image: url(./assets/update-button-icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  transition: all 0.3s;
+  cursor: pointer;
+  
+}
+
+.userpage-user-nickname-x-button {
+  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-image: url(./assets/x-icon.png);
+  background-position:50% 50%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: all 0.3s;
+  cursor: pointer;
+  
+}
+
+
+.userpage-user-nickname-button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.userpage-user-email {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.userpage-user-message-box {
+  flex: 7;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+
+}
+
+.userpage-user-message-text {
+  height: 65px;
+  line-height: 65px;
+
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  text-align: center;
+
+  font-size: 28px;
+  font-weight: 600;
+
+  left: 10px;
+}
+
+.userpage-user-message-text-input {
+  height: 65px;
+  line-height: 65px;
+
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  text-align: center;
+
+  font-size: 28px;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 20px;
+  left: 10px;
+
+}
+
+.userpage-button-box {
+  flex: 2;
+  height: 120px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.userpage-button-text-box {
+  height: 100%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.userpage-button-text {
+  width: 180px;
+  height: 50px;
+
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  font-weight: 500;
+
+  border-radius: 15px;
+  border: none;
+}
+
+.userpage-button-text:hover{
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.userpage-user-message-button {
+  margin-top: 10px;
+  margin-left: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  background-image: url(./assets/update-button-icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.userpage-user-message-button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.userpage-board-wrapper{
+  flex: 3.5;
+
+  width: 100%;
+  height: 100%;
+}
+
+.userpage-board-title{ 
+  margin: 20px 0 15px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 32px;
+  font-weight: 600;
+} 
+
+.userpage-board-title:hover {
+  cursor: pointer;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.userpage-board-contents-list {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 25px;
+}
+
+.userpage-code-wrapper{
+  flex: 2;
+
+  width: 100%;
+  height: 100%;
+
+}
+
+.userpage-chat-wrapper{
+  flex: 3.5;
+
+  width: 100%;
+  height: 100%;
+}
+
+.userpage-chat-title{ 
+  margin: 20px 0 15px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 32px;
+  font-weight: 600;
+} 
+
+.userpage-chat-room {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 25px;
+}
+
+

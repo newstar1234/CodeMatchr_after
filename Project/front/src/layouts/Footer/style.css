@@ -1,0 +1,57 @@
+#footer{
+    display: flex;
+    justify-content: center;
+    background-color: lightslategray;
+    height: 100px;
+}
+
+.footer-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1400px;
+}
+
+.footer-left-logo{
+    display: flex;
+
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.footer-left-logo-icon {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    background-image: url(./assets/code-matchr-logo-icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer-left-logo-text {
+    font-weight: 600;
+}
+
+.footer-right-github{
+    display: flex;
+    align-items: center;
+}
+
+.footer-right-github-icon{
+    margin-left: 10px;
+
+    width: 30px;
+    height: 30px;
+    background-image: url(./assets/github-button-logo-icon.png);
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.footer-right-github-icon:hover{
+    background-color: white;
+}

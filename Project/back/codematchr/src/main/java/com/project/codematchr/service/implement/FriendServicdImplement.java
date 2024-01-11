@@ -1,0 +1,105 @@
+package com.project.codematchr.service.implement;
+import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import com.project.codematchr.dto.response.ResponseDto;
+import com.project.codematchr.dto.request.friend.PostAddFriendRequestDto;
+import com.project.codematchr.dto.response.friend.DeleteFriendResponseDto;
+import com.project.codematchr.dto.response.friend.FriendListResponseDto;
+import com.project.codematchr.dto.response.friend.GetAddFriendListResponseDto;
+import com.project.codematchr.dto.response.friend.GetFriendTotalListResponseDto;
+import com.project.codematchr.dto.response.friend.PostAddFriendResponseDto;
+import com.project.codematchr.entity.FriendAddEntity;
+import com.project.codematchr.entity.FriendViewEntity;
+import com.project.codematchr.entity.UserViewEntity;
+import com.project.codematchr.repository.FriendAddRepository;
+import com.project.codematchr.repository.FriendRepository;
+import com.project.codematchr.repository.FriendTotalListRespository;
+import com.project.codematchr.service.FriendService;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class FriendServicdImplement implements FriendService {
+
+  private final FriendRepository friendRepository;
+  private final FriendAddRepository friendAddRepository;
+  private final FriendTotalListRespository friendTotalListRespository;
+
+  @Override
+  public ResponseEntity<? super GetFriendTotalListResponseDto> getFriendTotalList(String friendMyEmail) {
+  
+    List<FriendListResponseDto> friendList = null;
+
+    try {
+      List<UserViewEntity> userEntities = friendTotalListRespository.getFriendList(friendMyEmail);
+      friendList = FriendListResponseDto.copyFriendTotalList(userEntities);
+
+      } catch (Exception exception) {
+        exception.printStackTrace();
+        return ResponseDto.databaseError();
+      }
+
+      return GetFriendTotalListResponseDto.success(friendList);
+    
+  }
+
+  @Override
+  public ResponseEntity<? super GetAddFriendListResponseDto> getFriendList(String friendMyEmail) {
+
+    List<FriendListResponseDto> friendList = null;
+
+    try {
+
+      List<FriendViewEntity> friendViewEntities = friendRepository.findByFriendMyEmailOrderByFriendEmailDesc(friendMyEmail);
+
+      friendList = FriendListResponseDto.copyFriendList(friendViewEntities);
+      
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+
+    return GetAddFriendListResponseDto.success(friendList);
+
+  }
+  
+  @Override
+  public ResponseEntity<? super PostAddFriendResponseDto> addFriend(String friendMyEmail, PostAddFriendRequestDto postAddFriendRequestDto) {
+
+    try {
+
+      FriendAddEntity friendEntity = new FriendAddEntity(friendMyEmail, postAddFriendRequestDto);
+
+      friendAddRepository.save(friendEntity);
+      
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+
+    return PostAddFriendResponseDto.success();
+ 
+  }
+
+  @Override
+  public ResponseEntity<? super DeleteFriendResponseDto> deleteFriend(String friendMyEmail, String friendEmail) {
+
+    try {
+  
+      boolean hasAddFriend = friendAddRepository.existsByFriendEmail(friendEmail);
+      
+      if(!hasAddFriend) return DeleteFriendResponseDto.noExistedUserEmail();
+  
+      friendAddRepository.deleteByFriendEmail(friendEmail);
+      
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+
+    return DeleteFriendResponseDto.success();
+
+  }
+
+}

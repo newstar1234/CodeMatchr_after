@@ -1,0 +1,117 @@
+.main-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-bottom: 30px; */
+    width: 1400px;
+    
+}
+
+.main-top-title{
+    margin-top: 30px;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.main-top-compare{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-top-compare-box{
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-top-compare-left{
+    width: 650px;
+    height: 300px;
+}
+
+.main-top-compare-left-title{
+    width: 250px;
+    background-color: white;
+    font-size: 23px;
+    font-weight: 600;
+    text-align: center;
+    box-sizing: border-box;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: whitesmoke;
+}
+
+.main-top-compare-left-input{
+    border: none;
+    outline: none;
+
+    width: 650px;
+    height: 300px;
+    box-sizing: border-box;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: whitesmoke;
+}
+
+.main-top-compare-left-input::placeholder{
+    font-size: 18px;
+    font-weight: 600;
+    color: #ccc;
+    text-align: center;
+}
+
+.main-top-compare-switch-button{
+    margin-top: 56px;
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: all 0.3s;
+    background-image: url(./assets/exchange-button-icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.main-top-compare-switch-button:hover{
+    background-color: #ccc;
+}
+
+.main-top-compare-right{
+    width: 650px;
+    height: 300px;
+}
+
+.main-top-compare-right-title{
+    width: 250px;
+    background-color: white;
+    text-align: center;
+    box-sizing: border-box;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 23px;
+    font-weight: 600;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: whitesmoke;
+
+}
+
+.main-top-compare-right-input{
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    width: 650px;
+    height: 300px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: whitesmoke;
+}
