@@ -1,7 +1,7 @@
 package com.project.codematchr.entity;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import com.project.codematchr.dto.request.authentication.SignUpRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

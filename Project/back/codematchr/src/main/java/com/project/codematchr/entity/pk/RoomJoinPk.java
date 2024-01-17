@@ -1,5 +1,5 @@
 package com.project.codematchr.entity.pk;
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
