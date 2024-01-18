@@ -5,7 +5,7 @@ import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import { useCookies } from 'react-cookie';
 
 
-import { signInRequest, signUpRequest } from '../../apis';
+import { SNS_LOGIN_URL, signInRequest, signUpRequest } from '../../apis';
 import InputBox from '../../components/InputBox';
 import { INPUT_ICON, MAIN_PATH, emailBlanck, emailPattern, telNumberPattern } from '../../constants';
 import { SignInRequestDto, SignUpRequestDto } from '../../interfaces/request/authentication';
@@ -22,7 +22,6 @@ const [cookies, setCookie] = useCookies();
 
 // 로그인 혹은 회원가입 뷰 상태 //
 const [view, setView] = useState<'sign-in' | 'sign-up'>('sign-in');
-
 
 const navigator = useNavigate();
 
@@ -66,26 +65,33 @@ const navigator = useNavigate();
         navigator(MAIN_PATH);
 
       } 
-      
+
       // password icon 타입 변경 이벤트 //
       const onPasswordIconClickHandler = () => {
         setShowPassword(!showPassword);
       }
+
+      // Oauth2 로그인 //
+      const onSnsLoginClickHandler = (type: 'kakao' | 'naver') => {
+        window.location.href = SNS_LOGIN_URL(type);
+      };
+
       // SignUp 페이지 이동 클릭 이벤트 //
       const onSignUpClickHandler = () => {
         setView('sign-up');
       }
+
       // SignIn Button 클릭 이벤트 //
       const onSignInButtonClickHandler = async () => {
-        console.log(userEmail);
-        console.log(userPassword);
+        // console.log(userEmail);
+        // console.log(userPassword);
         
         const data : SignInRequestDto = {
           userEmail,
           userPassword
         }
         
-        console.log(`${data.userEmail}`);
+        // console.log(`${data.userEmail}`);
         signInRequest(data).then(signInResponseHandler);
       }
       // 비밀번호 엔터 //
@@ -116,6 +122,18 @@ const navigator = useNavigate();
                     <div className='authentication-middle-button' onClick={onSignInButtonClickHandler}>Sign in</div>
                   }
                 </div>
+            </div>
+          </div>
+          <div className='authentication-sns-wrapper'>
+            <div className='divider'></div>
+            <div className='authentication-sns-title'>{'SNS 로그인'}</div>
+            <div className='authentication-sns-sign-in-box'>
+              <div className='authentication-kakao-box'>
+                <div className='authentication-kakao-icon' onClick={() => onSnsLoginClickHandler('kakao')} ></div>
+              </div>
+              <div className='authentication-naver-box'>
+                <div className='authentication-naver-icon' onClick={() => onSnsLoginClickHandler('naver')} ></div>
+              </div>
             </div>
           </div>
         </div>

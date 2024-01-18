@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CustomOAuth2User implements OAuth2User {
   
+  // OAuth2User를 우리만의 방식으로 새로 custom 한 entity //
+
   private String userNickname;
 
   @Override

@@ -23,8 +23,8 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
   @Override
   public OAuth2User loadUser(OAuth2UserRequest request) throws OAuth2AuthenticationException {
 
-    OAuth2User oAuth2User = super.loadUser(request);
-    String oauthClientName = request.getClientRegistration().getClientName();
+    OAuth2User oAuth2User = super.loadUser(request); // super에서 loadUser의 request를 던지면 결과를 받을수 있음
+    String oauthClientName = request.getClientRegistration().getClientName(); // 로그인했는지를 받아와야 함
 
     try {
       System.out.println(new ObjectMapper().writeValueAsString(oAuth2User.getAttributes()));
@@ -36,15 +36,13 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
     String userNickname = null;
     String userEmail = null;
 
-    if(oauthClientName.equals("kakao")) {
+    if(oauthClientName.equals("kakao")) { // 카카오에 대한 처리 //
       userNickname = "kakao_" + oAuth2User.getAttributes().get("id");
-      userEmail = "kakao_" + oAuth2User.getAttributes().get("email");
       userEntity = new UserEntity(userEmail, userNickname, "kakao");
     }
 
-    if(oauthClientName.equals("naver")) {
-      Map
-      <String, String> responseMap = (Map<String, String>) oAuth2User.getAttributes().get("response");
+    if(oauthClientName.equals("naver")) { // 네이버에 대한 처리 //
+      Map<String, String> responseMap = (Map<String, String>) oAuth2User.getAttributes().get("response");
       userNickname = "naver_" + responseMap.get("id").substring(0, 14);
       userEmail = responseMap.get("email");
       userEntity = new UserEntity(userEmail, userNickname, "naver");

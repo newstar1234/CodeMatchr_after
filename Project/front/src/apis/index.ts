@@ -41,6 +41,9 @@ const API_DOMAIN = 'http://localhost:4040/api/v1';
 const SIGN_UP_URL = () => `${API_DOMAIN}/authentication/sign-up`;
 const SIGN_IN_URL = () => `${API_DOMAIN}/authentication/sign-in`;
 
+// OAuth2 로그인 관련 //
+export const SNS_LOGIN_URL = (type : 'kakao' | 'naver') => `${API_DOMAIN}/authentication/oauth2/${type}`;
+
 // 로그인 사용자 정보 불러오기 //
 const GET_SIGN_IN_USER_URL = () => `${API_DOMAIN}/user`;
 // 사용자 //

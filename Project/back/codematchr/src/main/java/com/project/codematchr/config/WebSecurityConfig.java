@@ -50,13 +50,13 @@ public class WebSecurityConfig {
               .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(request -> request
-              .requestMatchers("/", "/api/v1/authentication/**", "oauth2/**","/api/v1/file/**").permitAll()
+              .requestMatchers("/", "/api/v1/authentication/**", "oauth2/**", "/api/v1/user/*", "/api/v1/file/**").permitAll()
               .requestMatchers(HttpMethod.GET, "/api/v1/board/**", "/api/v1/room/current-room/*").permitAll()
               .requestMatchers(HttpMethod.GET, "/api/v1/room/**" , "/api/v1/user/*", "/api/v1/friend/**").permitAll()
               .anyRequest().authenticated()
             )
             .oauth2Login(oauth2 -> oauth2
-              .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/va/authentication/oauth2"))
+              .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/v1/user"))
               .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
               .userInfoEndpoint(endpoint -> endpoint.userService(defaultOAuth2UserService))
               .successHandler(oAuth2SuccessHandler)

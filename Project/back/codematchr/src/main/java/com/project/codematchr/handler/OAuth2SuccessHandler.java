@@ -1,5 +1,7 @@
 package com.project.codematchr.handler;
 
+import java.io.IOException;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Component;
 import com.project.codematchr.entity.CustomOAuth2User;
 import com.project.codematchr.provider.JwtProvider;
 
-import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
   
+  // 성공했을때 //
+
   private final JwtProvider jwtProvider;
 
   @Override
@@ -28,15 +31,11 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
 
-    String userId = oAuth2User.getName();
-    String token = jwtProvider.create(userId);
+    String userNickname = oAuth2User.getName();
+    String token = jwtProvider.create(userNickname);
 
-    try {
-      response.sendRedirect("http://localhost:3000/auth/oauth-response/" + token + "/3600");
-    } catch (java.io.IOException exception) {
-      exception.printStackTrace();
-    }
-
+    response.sendRedirect("http://localhost:3000/authentication/oauth-response/" + token + "/3600");   
+    
 	}
 
 }

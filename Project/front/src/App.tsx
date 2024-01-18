@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { getSignInUserRequest } from './apis';
 import ChatComePopUP from './components/PopUp/ChatComePopUp';
@@ -29,6 +29,7 @@ import RoomSearch from './views/Room/Search';
 
 function App() {
 
+const { token, expirationTime } = useParams();
 // 현재페이지 url 상태 //
 const {pathname} = useLocation();
 // 유저 스토어 상태 //
@@ -40,6 +41,8 @@ const { roomChat } = useRoomChatStore();
 
 // nestJS //
 const { path } = usePathStore();
+
+const navigator = useNavigate();
 
 
 // 로그인 사용자 //
@@ -61,6 +64,18 @@ useEffect(() => {
   getSignInUserRequest(accessToken).then(getSignInUserResponseHandler);
 }, [pathname]);
 
+useEffect(() => {
+  if(!token || !expirationTime) return;
+
+  const now = (new Date().getTime()) * 1000;
+  const expires = new Date(now + Number(expirationTime));
+
+  setCookie('accessToken', token, { expires, path: '/' });
+  
+  
+  navigator(MAIN_PATH);
+}, [token]);
+
   return (
     <>
       <Header/>
@@ -72,6 +87,9 @@ useEffect(() => {
 
         {/* 로그인 / 회원가입 화면 AUTHENTICATION */}
         <Route path={AUTHENTICATION_PATH} element={<Authentication/>} />
+        
+        {/* 로그인 / Oauth */}
+        {/* <Route path='oauth-response/:token/:expirationTime' element={<Main/>} /> */}
 
         {/* 유저 화면(마이페이지) USER */}
         <Route path={USER_PATH(USER_PAGE_PATH_VARIABLE)} element={<UserPage/>} />
