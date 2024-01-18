@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useDaumPostcodePopup, Address } from 'react-daum-postcode';
 import { useCookies } from 'react-cookie';
 
-
 import { SNS_LOGIN_URL, signInRequest, signUpRequest } from '../../apis';
 import InputBox from '../../components/InputBox';
 import { INPUT_ICON, MAIN_PATH, emailBlanck, emailPattern, telNumberPattern } from '../../constants';

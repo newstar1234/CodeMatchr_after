@@ -7,9 +7,8 @@ import Pagination from 'src/components/Pagination';
 import {  MAIN_PATH, MAIN_ROOM_COUNT_BY_PAGE_FUll } from 'src/constants';
 import { usePagination } from 'src/hooks';
 
-import BoardListResponseDto from 'src/interfaces/response/board/board-list.response.dto';
 import ResponseDto from 'src/interfaces/response/response.dto';
-import GetSearchBoardResponseDto from 'src/interfaces/response/board/get-search-board.response.dto';
+import { BoardListResponseDto, GetSearchBoardResponseDto } from 'src/interfaces/response/board';
 import './style.css';
 
 

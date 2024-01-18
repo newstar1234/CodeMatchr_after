@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useRef, KeyboardEvent, ChangeEvent } from 'react';
-
-import './style.css';
-import RoomListResponseDto from '../../../interfaces/response/room/room-list.response.dto';
-import Pagination from '../../../components/Pagination';
-import { COUNT_BY_PAGE, MAIN_PATH, MAIN_ROOM_COUNT_BY_PAGE_FUll, ROOM_SEARCH_PATH } from '../../../constants';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { usePagination } from '../../../hooks';
-import RoomFullListItem from '../../../components/RoomFullListItem';
+
+import Pagination from '../../../components/Pagination';
 import ChatComePopUP from '../../../components/PopUp/ChatComePopUp';
-import GetCurrentRoomListResponseDto from 'src/interfaces/response/room/get-current-room-list.response.dto';
-import ResponseDto from 'src/interfaces/response/response.dto';
+import RoomFullListItem from '../../../components/RoomFullListItem';
+import {  MAIN_ROOM_COUNT_BY_PAGE_FUll, ROOM_SEARCH_PATH } from '../../../constants';
 import { GetCurrentRoomListRequest } from 'src/apis';
-import GetSearchRoomResponseDto from 'src/interfaces/response/room/get-search-room.response.dto';
+import { usePagination } from '../../../hooks';
+import ResponseDto from 'src/interfaces/response/response.dto';
+import { GetCurrentRoomListResponseDto, GetSearchRoomResponseDto, RoomListResponseDto } from 'src/interfaces/response/room';
+import './style.css';
 
 export default function Room() {
 

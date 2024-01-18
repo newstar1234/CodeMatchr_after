@@ -9,11 +9,11 @@ import { usePagination } from 'src/hooks';
 import {  useUserStore } from 'src/store';
 import { dateFormat } from 'src/utils';
 import { PostCommentRequestDto } from 'src/interfaces/request/board';
-import GetBoardResponseDto from 'src/interfaces/response/board/get-board.response.dto';
-import GetFavoriteListResponseDto, { FavoriteListResponseDto } from 'src/interfaces/response/board/get-favorite-list.response.dto';
-import GetCommentListResponseDto, { CommentListResponseDto } from 'src/interfaces/response/board/get-comment-list.response.dto';
 import ResponseDto from 'src/interfaces/response/response.dto';
 import './style.css';
+import { GetBoardResponseDto } from 'src/interfaces/response/board';
+import GetFavoriteListResponseDto, { FavoriteListResponseDto } from 'src/interfaces/response/board/get-favorite-list.response.dto';
+import GetCommentListResponseDto, { CommentListResponseDto } from 'src/interfaces/response/board/get-comment-list.response.dto';
 
 export default function BoardDetail() {
 

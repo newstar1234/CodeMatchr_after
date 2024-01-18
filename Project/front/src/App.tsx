@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
-import { Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { getSignInUserRequest } from './apis';
 import ChatComePopUP from './components/PopUp/ChatComePopUp';

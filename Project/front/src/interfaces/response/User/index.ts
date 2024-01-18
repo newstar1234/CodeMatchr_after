@@ -4,8 +4,10 @@ import GetUserResponseDto from "./get-user-response.dto";
 import GetLoginUserResponseDto from "./get-login-user.response.dto";
 import GetUserBoardListResponseDto from "./get-user-board-list.response.dto";
 import GetUserRoomListResponseDto from "./get-user-room-list.response.dto";
+import PatchStateMessageResponseDto from "./patch-state-message-response.dto";
 
 export type {
   PatchNicknameResponseDto, PatchProfileImageUrlResponseDto,
-  GetUserResponseDto, GetLoginUserResponseDto, GetUserBoardListResponseDto, GetUserRoomListResponseDto
+  GetUserResponseDto, GetLoginUserResponseDto, GetUserBoardListResponseDto, 
+  GetUserRoomListResponseDto, PatchStateMessageResponseDto
 }

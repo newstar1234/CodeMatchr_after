@@ -12,13 +12,9 @@ import {BOARD_LIST_PATH,  MAIN_ROOM_COUNT_BY_PAGE, ROOM_PATH, WRITE_PATH} from '
 import { usePagination } from '../../hooks';
 import { useRoomStore, useUserStore } from 'src/store';
 
-import RoomListResponseDto from '../../interfaces/response/room/room-list.response.dto';
-import BoardListResponseDto from '../../interfaces/response/board/board-list.response.dto';
-import GetTop3CommentResponseDto from 'src/interfaces/response/board/getTop3Comment.response.dto';
+import { BoardListResponseDto, GetTop3CommentResponseDto, GetTop3FavoriteResponseDto, GetTop3ViewResponseDto } from 'src/interfaces/response/board';
+import { GetCurrentRoomListResponseDto, RoomListResponseDto } from 'src/interfaces/response/room';
 import ResponseDto from 'src/interfaces/response/response.dto';
-import GetTop3FavoriteResponseDto from 'src/interfaces/response/board/getTop3Favorite.response.dto';
-import GetTop3ViewResponseDto from 'src/interfaces/response/board/getTop3View.response.dto';
-import GetCurrentRoomListResponseDto from 'src/interfaces/response/room/get-current-room-list.response.dto';
 import './style.css';
 
 export default function Main() {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 import { getBoardListCommentRequest, getBoardListCurrentRequest, getBoardListFavoriteRequest, getBoardListViewRequest} from 'src/apis';
 import BoardListItem from 'src/components/BoardListItem';
 import Pagination from 'src/components/Pagination';

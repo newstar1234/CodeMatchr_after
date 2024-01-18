@@ -2,21 +2,21 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
-import {  getUserBoardListRequest, getUserRequest, getUserRoomListRequest, patchNicknameRequest, patchProfileImageUrlRequest, patchStateMessageRequest, uploadFileRequest } from 'src/apis';
 import UserBoardItem from '../../components/UserBoardItem';
 import Pagination from '../../components/Pagination';
 import ChatComePopUP from '../../components/PopUp/ChatComePopUp';
 import RoomFullListItem from '../../components/RoomFullListItem';
+import { getUserBoardListRequest, getUserRequest, getUserRoomListRequest, patchNicknameRequest, patchProfileImageUrlRequest, patchStateMessageRequest, uploadFileRequest } from 'src/apis';
 import { usePagination } from '../../hooks';
 import { useUserStore } from 'src/store';
 import { BOARD_LIST_PATH, COUNT_BY_PAGE, MAIN_PATH, MAIN_ROOM_COUNT_BY_PAGE, WRITE_PATH } from '../../constants';
 import { PatchNicknameRequestDto, PatchProfileImageUrlRequestDto, PatchStateMessageRequestDto } from 'src/interfaces/request/user';
-import BoardListResponseDto from '../../interfaces/response/board/board-list.response.dto';
-import RoomListResponseDto from '../../interfaces/response/room/room-list.response.dto';
-import { GetUserBoardListResponseDto, GetUserResponseDto, GetUserRoomListResponseDto } from 'src/interfaces/response/User';
 import ResponseDto from 'src/interfaces/response/response.dto';
-
+import { GetUserBoardListResponseDto, GetUserResponseDto, GetUserRoomListResponseDto } from 'src/interfaces/response/User';
+import { BoardListResponseDto } from 'src/interfaces/response/board';
+import { RoomListResponseDto } from 'src/interfaces/response/room';
 import './style.css';
+
 
 // 마이페이지 컴포넌트 // 
 export default function UserPage() {
