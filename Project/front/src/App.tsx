@@ -25,11 +25,11 @@ import Main from './views/Main';
 
 import './App.css';
 import RoomSearch from './views/Room/Search';
+import OAuth from './views/OAuth';
 
 
 function App() {
 
-const { token, expirationTime } = useParams();
 // 현재페이지 url 상태 //
 const {pathname} = useLocation();
 // 유저 스토어 상태 //
@@ -42,7 +42,6 @@ const { roomChat } = useRoomChatStore();
 // nestJS //
 const { path } = usePathStore();
 
-const navigator = useNavigate();
 
 
 // 로그인 사용자 //
@@ -64,17 +63,6 @@ useEffect(() => {
   getSignInUserRequest(accessToken).then(getSignInUserResponseHandler);
 }, [pathname]);
 
-useEffect(() => {
-  if(!token || !expirationTime) return;
-
-  const now = (new Date().getTime()) * 1000;
-  const expires = new Date(now + Number(expirationTime));
-
-  setCookie('accessToken', token, { expires, path: '/' });
-  
-  
-  navigator(MAIN_PATH);
-}, [token]);
 
   return (
     <>
@@ -89,7 +77,7 @@ useEffect(() => {
         <Route path={AUTHENTICATION_PATH} element={<Authentication/>} />
         
         {/* 로그인 / Oauth */}
-        {/* <Route path='oauth-response/:token/:expirationTime' element={<Main/>} /> */}
+        <Route path='/authentication/oauth-response/:token/:expiredTime' element={<OAuth/>} />
 
         {/* 유저 화면(마이페이지) USER */}
         <Route path={USER_PATH(USER_PAGE_PATH_VARIABLE)} element={<UserPage/>} />

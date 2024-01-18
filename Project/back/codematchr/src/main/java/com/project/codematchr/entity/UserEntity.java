@@ -39,9 +39,9 @@ public class UserEntity {
         this.userPassword = "Passw0rd";
         this.userNickname = userNickname;
         this.userStateMessage = userStateMessage;
-        this.userTelnumber = "";
-        this.userAddress = "";
-        this.userAddressDetail = "";
+        this.userTelnumber = "00000000000";
+        this.userAddress = "서울특별시";
+        this.userAddressDetail = "강남구";
         }
 
     public void setUserNickname(String userNickname) {

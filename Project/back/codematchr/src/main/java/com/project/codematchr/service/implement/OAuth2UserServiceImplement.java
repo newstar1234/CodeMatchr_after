@@ -36,8 +36,9 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
     String userNickname = null;
     String userEmail = null;
 
-    if(oauthClientName.equals("kakao")) { // 카카오에 대한 처리 //
+    if(oauthClientName.equals("kakao")) { // 카카오데 대한 처리 //
       userNickname = "kakao_" + oAuth2User.getAttributes().get("id");
+      userEmail = "kakao_" + oAuth2User.getAttributes().get("email");
       userEntity = new UserEntity(userEmail, userNickname, "kakao");
     }
 

@@ -71,11 +71,6 @@ const navigator = useNavigate();
         setShowPassword(!showPassword);
       }
 
-      // Oauth2 로그인 //
-      const onSnsLoginClickHandler = (type: 'kakao' | 'naver') => {
-        window.location.href = SNS_LOGIN_URL(type);
-      };
-
       // SignUp 페이지 이동 클릭 이벤트 //
       const onSignUpClickHandler = () => {
         setView('sign-up');
@@ -94,6 +89,12 @@ const navigator = useNavigate();
         // console.log(`${data.userEmail}`);
         signInRequest(data).then(signInResponseHandler);
       }
+      
+      // Oauth2 로그인 //
+      const onSnsLoginClickHandler = (type: 'kakao' | 'naver') => {
+        window.location.href = SNS_LOGIN_URL(type);
+      };
+
       // 비밀번호 엔터 //
       const onPasswordKeyDownHandler = (event:KeyboardEvent<HTMLInputElement>) => {
         if(event.key !== 'Enter') return;
