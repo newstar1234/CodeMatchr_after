@@ -34,6 +34,16 @@ public class UserEntity {
     this.userAddressDetail = dto.getUserAddressDetail();
     }
 
+    public UserEntity(String userEmail, String userNickname, String userStateMessage) {
+        this.userEmail = userEmail;
+        this.userPassword = "Passw0rd";
+        this.userNickname = userNickname;
+        this.userStateMessage = userStateMessage;
+        this.userTelnumber = "";
+        this.userAddress = "";
+        this.userAddressDetail = "";
+        }
+
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
     }

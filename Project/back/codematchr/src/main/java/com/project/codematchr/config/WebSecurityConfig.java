@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configurers.CsrfConfig
 import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -22,6 +23,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.project.codematchr.filter.JwtAuthenticationFilter;
+import com.project.codematchr.handler.OAuth2SuccessHandler;
+
 import lombok.RequiredArgsConstructor;
 
 @Configurable
@@ -31,6 +34,8 @@ import lombok.RequiredArgsConstructor;
 public class WebSecurityConfig {
     
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final DefaultOAuth2UserService defaultOAuth2UserService;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 
     @Bean
     protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception {
@@ -45,10 +50,16 @@ public class WebSecurityConfig {
               .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(request -> request
-              .requestMatchers("/", "/api/v1/authentication/**", "/api/v1/file/**").permitAll()
+              .requestMatchers("/", "/api/v1/authentication/**", "oauth2/**","/api/v1/file/**").permitAll()
               .requestMatchers(HttpMethod.GET, "/api/v1/board/**", "/api/v1/room/current-room/*").permitAll()
               .requestMatchers(HttpMethod.GET, "/api/v1/room/**" , "/api/v1/user/*", "/api/v1/friend/**").permitAll()
               .anyRequest().authenticated()
+            )
+            .oauth2Login(oauth2 -> oauth2
+              .authorizationEndpoint(endpoint -> endpoint.baseUri("/api/va/authentication/oauth2"))
+              .redirectionEndpoint(endpoint -> endpoint.baseUri("/oauth2/callback/*"))
+              .userInfoEndpoint(endpoint -> endpoint.userService(defaultOAuth2UserService))
+              .successHandler(oAuth2SuccessHandler)
             )
             .exceptionHandling(exceptionHandling -> exceptionHandling
               .authenticationEntryPoint(new FailedAuthenticationEntryPoint())
