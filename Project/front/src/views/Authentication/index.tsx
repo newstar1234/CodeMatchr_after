@@ -77,15 +77,12 @@ const navigator = useNavigate();
 
       // SignIn Button 클릭 이벤트 //
       const onSignInButtonClickHandler = async () => {
-        // console.log(userEmail);
-        // console.log(userPassword);
         
         const data : SignInRequestDto = {
           userEmail,
           userPassword
         }
         
-        // console.log(`${data.userEmail}`);
         signInRequest(data).then(signInResponseHandler);
       }
       

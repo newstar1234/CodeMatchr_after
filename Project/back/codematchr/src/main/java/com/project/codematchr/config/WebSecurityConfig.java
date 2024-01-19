@@ -51,8 +51,8 @@ public class WebSecurityConfig {
             )
             .authorizeHttpRequests(request -> request
               .requestMatchers("/", "/api/v1/authentication/**", "api/v1/authentication/oauth2/**", "oauth2/**", "/api/v1/file/**").permitAll()
-              .requestMatchers(HttpMethod.GET, "/api/v1/board/**", "/api/v1/room/current-room/*").permitAll()
-              .requestMatchers(HttpMethod.GET, "/api/v1/room/**" , "/api/v1/user/*", "/api/v1/friend/**").permitAll()
+              .requestMatchers(HttpMethod.GET, "/api/v1/authentication/**", "/api/v1/board/**", "/api/v1/room/current-room/*").permitAll()
+              .requestMatchers(HttpMethod.GET, "api/v1/authentication/oauth2/**", "/api/v1/room/**" , "/api/v1/user/*", "/api/v1/friend/**").permitAll()
               .anyRequest().authenticated()
             )
             .oauth2Login(oauth2 -> oauth2

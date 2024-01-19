@@ -20,7 +20,6 @@ import './style.css';
 export default function Main() {
 
   const navigator = useNavigate();
-
   
   // Main Top - Compare Code 컴포넌트 //
   const MainTop = () => {

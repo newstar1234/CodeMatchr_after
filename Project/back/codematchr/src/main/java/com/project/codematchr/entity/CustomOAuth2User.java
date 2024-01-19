@@ -15,7 +15,7 @@ public class CustomOAuth2User implements OAuth2User {
   
   // OAuth2User를 우리만의 방식으로 새로 custom 한 entity //
 
-  private String userNickname;
+  private String userEmail;
 
   @Override
   public Map<String, Object> getAttributes() {
@@ -29,7 +29,7 @@ public class CustomOAuth2User implements OAuth2User {
 
   @Override
   public String getName() {
-    return this.userNickname;
+    return this.userEmail;
   }
 
   

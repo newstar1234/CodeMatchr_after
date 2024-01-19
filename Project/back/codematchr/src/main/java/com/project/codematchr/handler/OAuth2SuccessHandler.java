@@ -31,8 +31,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
     CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
 
-    String userNickname = oAuth2User.getName();
-    String token = jwtProvider.create(userNickname);
+    String userEmail = oAuth2User.getName();
+    String token = jwtProvider.create(userEmail);
 
     response.sendRedirect("http://localhost:3000/authentication/oauth-response/" + token + "/3600");   
     

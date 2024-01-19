@@ -49,9 +49,9 @@ public class OAuth2UserServiceImplement extends DefaultOAuth2UserService {
       userEntity = new UserEntity(userEmail, userNickname, "naver");
     }
 
-    userRepository.save(userEntity);
+    userRepository.save(userEntity); 
 
-    return new CustomOAuth2User(userNickname);
+    return new CustomOAuth2User(userEmail);
 
 
   }
