@@ -161,7 +161,7 @@ export default function BoardList() {
   // 현재 페이지가 바뀔 때마다 board 리스트 변경 //
   useEffect(() => {
     getViewBoardList(currentList);
-  }, [currentPage]);
+  }, [currentList, currentPage]);
   // 첫 시작 페이지 랜더링 //
   useEffect(() => {
     getBoardListCurrentRequest(currentSection).then(getCurrentBoardListResponseHandler);
