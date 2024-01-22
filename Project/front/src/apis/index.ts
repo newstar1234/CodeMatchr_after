@@ -112,130 +112,9 @@ const SEARCH_BOARD_URL = (searchWord : string ) => `${API_DOMAIN}/board/search/$
 
 // 로그인 //
 export const signInRequest = async (data : SignInRequestDto) => {
-    const result = await axios.post(SIGN_IN_URL(), data)
-        .then((response) => {
-            const responseBody: SignInResponseDto = response.data;
-            return responseBody;
-        })
-        .catch((error) => {
-            const responseBody: ResponseDto = error.response.data;
-            return responseBody;
-        });
-        return result;
-    }
-
-// 회원가입 //
-export const signUpRequest = async (data : SignUpRequestDto) => {
-    const result = await axios.post(SIGN_UP_URL(), data)
-        .then((response) => {
-            const responseBody: SignUpResponseDto = response.data;
-            const {code} = responseBody;
-            return code;
-        })
-        .catch((error) => {
-            const responseBody: ResponseDto = error.response.data;
-            const { code } = responseBody;
-            return code;
-        });
-        return result;
-}
-
-// 로그인 사용자 //
-export const getSignInUserRequest = async (token: string) => {
-    const headers = { headers: { 'Authorization': `Bearer ${token}` } };
-    const result = await axios.get(GET_SIGN_IN_USER_URL(), headers)
+const result = await axios.post(SIGN_IN_URL(), data)
     .then((response) => {
-      const responseBody: GetLoginUserResponseDto = response.data;
-      return responseBody;
-    })
-    .catch((error) => {
-      const responseBody: ResponseDto = error.response.data;
-      return responseBody;
-    });
-    return result;
-  }
-
-// 사용자 정보 가져오기 //
-export const getUserRequest = async (userEmail:string) => {
-    const result = await axios.get(GET_USER_URL(userEmail))
-        .then((response) => {
-            const responseBody : GetUserResponseDto = response.data;
-            return responseBody;
-        })
-        .catch((error) => {
-            const responseBody: ResponseDto = error.response.data;
-            return responseBody;
-        });
-    return result;
-}
-
-// 닉네임 변경 //
-export const patchNicknameRequest = async (data: PatchNicknameRequestDto, token: string) => {
-    const result = await axios.patch(PATCH_USER_NICKNAME_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
-        .then((response) => {
-            const responseBody:PatchNicknameResponseDto = response.data;
-            const {code} = responseBody;
-            return code;
-        })
-        .catch((error) => {
-            const responseBody:ResponseDto = error.response.data;
-            const {code} = responseBody;
-            return code; 
-        });
-    return result;
-}
-
-// 프로필 이미지 변경 //
-export const patchProfileImageUrlRequest = async (data: PatchProfileImageUrlRequestDto, token:string) => {
-    const result = await axios.patch(PATCH_USER_PROFILE_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
-        .then((response) => {
-            const responseBody:PatchProfileImageUrlResponseDto = response.data;
-            const {code} = responseBody;
-            return code;
-        })
-        .catch((error) => {
-            const responseBody:ResponseDto = error.response.data;
-            const {code} = responseBody;
-            return code;
-        });
-    return result;
-}
-
-// 상태메세지 변경 //
-export const patchStateMessageRequest = async (data: PatchStateMessageRequestDto, token:string) => {
-    const result = await axios.patch(PATCH_USER_STATE_MESSAGE_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
-        .then((response) => {
-            const responseBody:PatchStateMessageResponseDto = response.data;
-            const {code} = responseBody;
-            return code;
-        })
-        .catch((error) => {
-            const responseBody:ResponseDto = error.response.data;
-            const {code} = responseBody;
-            return code;
-        });
-    return result;
-}
-
-// 유저 페이지 게시물 리스트 불러오기 //
-export const getUserBoardListRequest = async (userEmail: string) => {
-const result = await axios.get(GET_USER_BOARD_LIST_URL(userEmail))
-.then((response) => {
-    const responseBody: GetUserBoardListResponseDto = response.data;
-    return responseBody;
-})
-.catch((error) => {
-    const responseBody: ResponseDto = error.response.data;
-    return responseBody;
-});
-return result;
-}
-
-// 유저 페이지 채팅방 리스트 불러오기 //
-export const getUserRoomListRequest = async (userEmail: string, token : string) => {
-    const result = await axios.get(GET_USER_ROOM_LIST_URL(userEmail), { headers: { Authorization: `Bearer ${token}` } })
-    .then((response) => {
-        const responseBody: GetUserRoomListResponseDto = response.data;
+        const responseBody: SignInResponseDto = response.data;
         return responseBody;
     })
     .catch((error) => {
@@ -245,20 +124,141 @@ export const getUserRoomListRequest = async (userEmail: string, token : string) 
     return result;
 }
 
-// 게시글 작성 //
-export const postBoardRequest = async (data : PostBoardRequestDto, token:string) => {
-    const result = await axios.post(POST_BOARD_URL(), data,{ headers: { Authorization: `Bearer ${token}` } })
+// 회원가입 //
+export const signUpRequest = async (data : SignUpRequestDto) => {
+const result = await axios.post(SIGN_UP_URL(), data)
     .then((response) => {
-        const responseBody : PostBoardResponseDto = response.data;
+        const responseBody: SignUpResponseDto = response.data;
         const {code} = responseBody;
         return code;
-    })   
+    })
     .catch((error) => {
-        const responseBody : ResponseDto = error.response.date;
-        const {code} = responseBody;
+        const responseBody: ResponseDto = error.response.data;
+        const { code } = responseBody;
         return code;
     });
     return result;
+}
+
+// 로그인 사용자 //
+export const getSignInUserRequest = async (token: string) => {
+const headers = { headers: { 'Authorization': `Bearer ${token}` } };
+const result = await axios.get(GET_SIGN_IN_USER_URL(), headers)
+.then((response) => {
+    const responseBody: GetLoginUserResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// 사용자 정보 가져오기 //
+export const getUserRequest = async (userEmail:string) => {
+const result = await axios.get(GET_USER_URL(userEmail))
+    .then((response) => {
+        const responseBody : GetUserResponseDto = response.data;
+        return responseBody;
+    })
+    .catch((error) => {
+        const responseBody: ResponseDto = error.response.data;
+        return responseBody;
+    });
+return result;
+}
+
+// 닉네임 변경 //
+export const patchNicknameRequest = async (data: PatchNicknameRequestDto, token: string) => {
+const result = await axios.patch(PATCH_USER_NICKNAME_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
+    .then((response) => {
+        const responseBody:PatchNicknameResponseDto = response.data;
+        const {code} = responseBody;
+        return code;
+    })
+    .catch((error) => {
+        const responseBody:ResponseDto = error.response.data;
+        const {code} = responseBody;
+        return code; 
+    });
+return result;
+}
+
+// 프로필 이미지 변경 //
+export const patchProfileImageUrlRequest = async (data: PatchProfileImageUrlRequestDto, token:string) => {
+const result = await axios.patch(PATCH_USER_PROFILE_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
+    .then((response) => {
+        const responseBody:PatchProfileImageUrlResponseDto = response.data;
+        const {code} = responseBody;
+        return code;
+    })
+    .catch((error) => {
+        const responseBody:ResponseDto = error.response.data;
+        const {code} = responseBody;
+        return code;
+    });
+return result;
+}
+
+// 상태메세지 변경 //
+export const patchStateMessageRequest = async (data: PatchStateMessageRequestDto, token:string) => {
+const result = await axios.patch(PATCH_USER_STATE_MESSAGE_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
+    .then((response) => {
+        const responseBody:PatchStateMessageResponseDto = response.data;
+        const {code} = responseBody;
+        return code;
+    })
+    .catch((error) => {
+        const responseBody:ResponseDto = error.response.data;
+        const {code} = responseBody;
+        return code;
+    });
+return result;
+}
+
+// 유저 페이지 게시물 리스트 불러오기 //
+export const getUserBoardListRequest = async (userEmail: string) => {
+const result = await axios.get(GET_USER_BOARD_LIST_URL(userEmail))
+.then((response) => {
+const responseBody: GetUserBoardListResponseDto = response.data;
+return responseBody;
+})
+.catch((error) => {
+const responseBody: ResponseDto = error.response.data;
+return responseBody;
+});
+return result;
+}
+
+// 유저 페이지 채팅방 리스트 불러오기 //
+export const getUserRoomListRequest = async (userEmail: string, token : string) => {
+const result = await axios.get(GET_USER_ROOM_LIST_URL(userEmail), { headers: { Authorization: `Bearer ${token}` } })
+.then((response) => {
+    const responseBody: GetUserRoomListResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// 게시글 작성 //
+export const postBoardRequest = async (data : PostBoardRequestDto, token:string) => {
+const result = await axios.post(POST_BOARD_URL(), data,{ headers: { Authorization: `Bearer ${token}` } })
+.then((response) => {
+    const responseBody : PostBoardResponseDto = response.data;
+    const {code} = responseBody;
+    return code;
+})   
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.date;
+    const {code} = responseBody;
+    return code;
+});
+return result;
 }
 
 
@@ -276,415 +276,415 @@ const GET_SEARCH_ROOM_URL = (searchWord : string) => `${API_DOMAIN}/room/search/
 
 // 채팅방 만들기 //
 export const postRoomRequest = async (data : PostRoomRequestDto, token : string) => {
-    const result = await axios.post(POST_ROOM_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
-    .then((response) => {
-        const responseBody: PostRoomResponseDto = response.data;
-        return responseBody
-    }).catch((error) => {
-        const responseBody: ResponseDto = error.response.data;
-        return responseBody
-    });
-    return result;
+const result = await axios.post(POST_ROOM_URL(), data, { headers: { Authorization: `Bearer ${token}` } })
+.then((response) => {
+    const responseBody: PostRoomResponseDto = response.data;
+    return responseBody
+}).catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody
+});
+return result;
 }
 
 // 채팅방 불러오기 //
 export const getRoomRequest = async (roomNuber : number | string, token: string) => {
-    const result = await axios.get(GET_ROOM_URL(roomNuber), { headers: { Authorization: `Bearer ${token}` } })
-    .then((response) => {
-        const responseBody: GetRoomResponseDto = response.data;
-        return responseBody;
-    }).catch((error) => {
-        const responseBody: ResponseDto = error.response.data;
-        return responseBody;
-    })
+const result = await axios.get(GET_ROOM_URL(roomNuber), { headers: { Authorization: `Bearer ${token}` } })
+.then((response) => {
+    const responseBody: GetRoomResponseDto = response.data;
+    return responseBody;
+}).catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody;
+})
 
-    return result;
+return result;
 }
 
 // 현재 모든 채팅방 리스트 가져오기 //
 export const GetCurrentRoomListRequest = async (section: number) => {
-    const result = await axios.get(GET_CURRENT_ROOM_LIST_URL(section))
-    .then((response) => {
-        const responseBody: GetCurrentRoomListResponseDto = response.data;
-        return responseBody;
-    }).catch((error) => {
-        const responseBody: ResponseDto = error.response.data;
-        return responseBody;
-    })
+const result = await axios.get(GET_CURRENT_ROOM_LIST_URL(section))
+.then((response) => {
+    const responseBody: GetCurrentRoomListResponseDto = response.data;
+    return responseBody;
+}).catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody;
+})
 
-    return result;
+return result;
 }
 
 // 채팅방 이름 변경 //
 export const PatchRoomTitleRequest = async (roomNumber : number | string, data : PatchRoomTitleRequestDto, token : string) => {
-    const result = await axios.patch(PATCH_ROOM_TITLE_URL(roomNumber), data, { headers: { Authorization : `Bearer ${token}` } })
-    .then((response) => {
-        const responseBody : PatchRoomTitleResponseDto = response.data;
-        const { code } = responseBody;
-        return code;
-    }).catch((error) => {
-        const responseBody: ResponseDto = error.response.data;
-        const { code } = responseBody;
-        return code;
-    });
+const result = await axios.patch(PATCH_ROOM_TITLE_URL(roomNumber), data, { headers: { Authorization : `Bearer ${token}` } })
+.then((response) => {
+    const responseBody : PatchRoomTitleResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+}).catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
 
-    return result;
+return result;
 }
 
 // 채팅방 비밀번호 변경 //
 export const PatchRoomPasswordRequest = async (roomNumber : number | string, data : PatchRoomPasswordRequestDto, token : string) => {
-    const result = await axios.patch(PATCH_ROOM_PASSWORD_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`}})
-    .then((response) => {
-        const responseBody : PatchRoomPasswordResponseDto = response.data;
-        const { code } = responseBody;
-        return code;
-    }).catch((error) => {
-        const responseBody: ResponseDto = error.response.data;
-        const { code } = responseBody;
-        return code;
-    });
+const result = await axios.patch(PATCH_ROOM_PASSWORD_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`}})
+.then((response) => {
+    const responseBody : PatchRoomPasswordResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+}).catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
 
-    return result;
+return result;
 }
 
 // 채팅방 이미지 수정 //
 export const PatchRoomImageUrlRequest = async (roomNumber : number |string, data : PatchRoomImageUrlRequestDto, token : string) => {
-    const result = await axios.patch(PATCH_ROOM_IMAGE_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`} })
-    .then((response) => {
-        const responseBody : PatchRoomImageUrlResponseDto = response.data;
-        const { code } = responseBody;
-        return code;
-    }).catch((error) => {
-        const responseBody: ResponseDto = error.response.data;
-        const { code } = responseBody;
-        return code;
-    });
+const result = await axios.patch(PATCH_ROOM_IMAGE_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`} })
+.then((response) => {
+    const responseBody : PatchRoomImageUrlResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+}).catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
 
-    return result;
+return result;
 }
 
 // 채팅방 삭제 //
 export const DeleteRoomRequest = async (roomNumber : number | string, token : string) => {
-    const result = await axios.delete(DELETE_ROOM_URL(roomNumber), { headers : {Authorization : `Bearer ${token}`} })
-    .then((response) => {
-        const responseBody : DeleteBoardResponseDto = response.data;
-        const { code } = responseBody;
-        return code;
-    }).catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        const { code } = responseBody;
-        return code;
-    });
+const result = await axios.delete(DELETE_ROOM_URL(roomNumber), { headers : {Authorization : `Bearer ${token}`} })
+.then((response) => {
+    const responseBody : DeleteBoardResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+}).catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
 
-    return result;
+return result;
 }
 
 // 채팅방 입장 //
 export const PatchRoomEntranceRequest = async (roomNumber : number | string, data : PatchRoomEntranceRequestDto, token : string) => {
-    const result = await axios.patch(PATCH_ROOM_ENTRANCE_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`} })
-    .then((response) => {
-        const responseBody : PatchRoomEntranceResponseDto = response.data;
-        const { code } = responseBody;
-        return code;
-    }).catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        const { code } = responseBody;
-        return code;
-    });
+const result = await axios.patch(PATCH_ROOM_ENTRANCE_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`} })
+.then((response) => {
+    const responseBody : PatchRoomEntranceResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+}).catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
 
-    return result;
+return result;
 }
 
 // 채팅방 나가기 //
 export const PatchRoomExitRequest = async (roomNumber : number | string, data : PatchRoomExitRequsetDto , token : string) => {
-    const result = await axios.patch(PATCH_ROOM_EXIT_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`} })
-    .then((response) => {
-        const responseBody : PatchRoomExitResponseDto = response.data;
-        const { code } = responseBody;
-        return code;
-    }).catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        const { code } = responseBody;
-        return code;
-    });
+const result = await axios.patch(PATCH_ROOM_EXIT_URL(roomNumber), data, { headers : {Authorization : `Bearer ${token}`} })
+.then((response) => {
+    const responseBody : PatchRoomExitResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+}).catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
 
-    return result;
+return result;
 }
 
 // 채팅방 검색 //
 export const getSearchRoomRequest = async (searchWord : string) => {
-    const result = await axios.get(GET_SEARCH_ROOM_URL(searchWord))
-    .then((response) => {
-        const responseBody : GetSearchRoomResponseDto = response.data;
-        return responseBody;
-    })
-    .catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        return responseBody;
-    })
-    return result;
+const result = await axios.get(GET_SEARCH_ROOM_URL(searchWord))
+.then((response) => {
+    const responseBody : GetSearchRoomResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+})
+return result;
 }
 
 
 
 // 파일 업로드 //
 export const uploadFileRequest = async (data: FormData) => {
-    const result = await axios.post(UPLOAD_FILE(), data, { headers: { 'Content-Type': 'multipart/form-data' } })
-    .then((response) => {
-      const imageUrl: string = response.data;
-      return imageUrl;
-    })
-    .catch((error) => null);
-    return result;
-  }
+const result = await axios.post(UPLOAD_FILE(), data, { headers: { 'Content-Type': 'multipart/form-data' } })
+.then((response) => {
+    const imageUrl: string = response.data;
+    return imageUrl;
+})
+.catch((error) => null);
+return result;
+}
 
 // 게시물 수정 //
-  export const patchBoardRequest = async (boardNumber: number | string, data: PatchBoardRequestDto, token: string) => {
-    const result = await axios.patch(PATCH_BOARD_URL(boardNumber), data, { headers: { Authorization: `Bearer ${token}` } })
+export const patchBoardRequest = async (boardNumber: number | string, data: PatchBoardRequestDto, token: string) => {
+const result = await axios.patch(PATCH_BOARD_URL(boardNumber), data, { headers: { Authorization: `Bearer ${token}` } })
+.then((response) => {
+    const responseBody: PatchBoardResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+})
+.catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
+return result;
+}
+
+// 게시물 삭제 //
+export const deleteBoardRequest = async (boardNumber: number | string, token: string) => {
+const result = await axios.delete(DELETE_BOARD_URL(boardNumber), { headers: { Authorization: `Bearer ${token}` } })
+.then((response) => {
+        const responseBody: DeleteBoardResponseDto = response.data;
+        const { code } = responseBody;
+        return code;
+}).catch((error) => {
+        const responseBody: ResponseDto = error.response.data;
+        const { code } = responseBody;
+        return code;
+});
+
+return result;
+}
+
+// 게시물 불러오기 //
+export const getBoardRequest = async (boardNumber: number | string) => {
+const result = await axios.get(GET_BOARD_URL(boardNumber))
+.then((response) => {
+    const responseBody: GetBoardResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// top3 current 게시물 불러오기 //
+export const getCurrentListRequest = async () => {
+const result = await axios.get(GET_TOP3_CURRENT_BOARD_LIST_URL())
+.then((response) => {
+    const responseBody : GetTop3FavoriteResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+
+}
+// top3 좋아요 게시물 불러오기 //
+export const getFavoriteListRequest = async () => {
+const result = await axios.get(GET_TOP3_FAVORITE_BOARD_LIST_URL())
+.then((response) => {
+    const responseBody : GetTop3FavoriteResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+
+}
+
+// top3 댓글 게시물 불러오기 //
+export const getCommentListRequest = async () => {
+const result = await axios.get(GET_TOP3_COMMENT_BOARD_LIST_URL())
+.then((response) => {
+    const responseBody : GetTop3CommentResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+
+}
+
+// top3 조회수 게시물 불러오기 //
+export const getViewListRequest = async () => {
+const result = await axios.get(GET_TOP3_VIEW_BOARD_LIST_URL())
+.then((response) => {
+    const responseBody : GetTop3ViewResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+
+}
+
+// 게시물 불러오기 최신순 //
+export const getBoardListCurrentRequest = async (section : number) => {
+const result = await axios.get(GET_BOARD_LIST_CURRENT(section))
+.then((response) => {
+    const responseBody : GetBoardListResponeDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// 게시물 불러오기 좋아요 //
+export const getBoardListFavoriteRequest = async (section : number) => {
+const result = await axios.get(GET_BOARD_LIST_FAVORITE(section))
+.then((response) => {
+    const responseBody : GetBoardListResponeDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+
+// 게시물 불러오기 댓글 //
+export const getBoardListCommentRequest = async (section : number) => {
+const result = await axios.get(GET_BOARD_LIST_COMMENT(section))
+.then((response) => {
+    const responseBody : GetBoardListResponeDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// 게시물 불러오기 조회수 //
+export const getBoardListViewRequest = async (section : number) => {
+const result = await axios.get(GET_BOARD_LIST_VIEW(section))
+.then((response) => {
+    const responseBody : GetBoardListResponeDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody : ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// 좋아요 버튼 //
+export const putFavoriteRequest = async (favoriteBoardNumber: number | string, token: string) => {
+const result = await axios.put(PUT_FAVORITE_URL(favoriteBoardNumber), {}, { headers: { Authorization: `Bearer ${token}` } })
+.then((response) => {
+    const responseBody: PutFavoriteResponseDto = response.data;
+    const { code } = responseBody;
+    return code;
+})
+.catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    const { code } = responseBody;
+    return code;
+});
+return result;
+}
+
+// 게시물 좋아요 리스트 //
+export const getBoardFavoriteListRequest = async (favoriteBoardNumber: number | string) => {
+const result = await axios.get(GET_FAVORITE_LIST_URL(favoriteBoardNumber))
+.then((response) => {
+    const responseBody: GetFavoriteListResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// 게시물 댓글 리스트 //
+export const getBoardCommentListRequest = async (commentBoardNumber: number | string) => {
+const result = await axios.get(GET_COMMENT_LIST_URL(commentBoardNumber))
+.then((response) => {
+    const responseBody: GetCommentListResponseDto = response.data;
+    return responseBody;
+})
+.catch((error) => {
+    const responseBody: ResponseDto = error.response.data;
+    return responseBody;
+});
+return result;
+}
+
+// 댓글 작성 //
+export const postCommentRequest = async (commentBoardNumber : number | string, data: PostCommentRequestDto, token: string) => {
+const result = await axios.post(POST_COMMENT_URL(commentBoardNumber), data, { headers: { Authorization: `Bearer ${token}` } })
     .then((response) => {
-      const responseBody: PatchBoardResponseDto = response.data;
-      const { code } = responseBody;
-      return code;
+        const responseBody : PostBoardResponseDto = response.data;
+        const {code} = responseBody;
+        return code;
     })
     .catch((error) => {
-      const responseBody: ResponseDto = error.response.data;
-      const { code } = responseBody;
-      return code;
-    });
-    return result;
-  }
-
-  // 게시물 삭제 //
-  export const deleteBoardRequest = async (boardNumber: number | string, token: string) => {
-    const result = await axios.delete(DELETE_BOARD_URL(boardNumber), { headers: { Authorization: `Bearer ${token}` } })
-    .then((response) => {
-         const responseBody: DeleteBoardResponseDto = response.data;
-         const { code } = responseBody;
-         return code;
-    }).catch((error) => {
-         const responseBody: ResponseDto = error.response.data;
-         const { code } = responseBody;
-         return code;
-    });
-
+        const responseBody : ResponseDto = error.response.data;
+        const {code} = responseBody;
+        return code;
+    })
     return result;
 }
 
-  // 게시물 불러오기 //
-  export const getBoardRequest = async (boardNumber: number | string) => {
-    const result = await axios.get(GET_BOARD_URL(boardNumber))
+// 댓글 삭제 //
+export const deleteCommentRequest = async (commentNumber : number | string, token: string) => {
+const result = await axios.delete(DELETE_COMMENT_URL(commentNumber), { headers: { Authorization: `Bearer ${token}` } })
     .then((response) => {
-      const responseBody: GetBoardResponseDto = response.data;
-      return responseBody;
-    })
-    .catch((error) => {
-      const responseBody: ResponseDto = error.response.data;
-      return responseBody;
-    });
-    return result;
-  }
-
-  // top3 current 게시물 불러오기 //
-  export const getCurrentListRequest = async () => {
-    const result = await axios.get(GET_TOP3_CURRENT_BOARD_LIST_URL())
-    .then((response) => {
-        const responseBody : GetTop3FavoriteResponseDto = response.data;
+        const responseBody : DeleteCommentResponseDto = response.data;
         return responseBody;
     })
     .catch((error) => {
         const responseBody : ResponseDto = error.response.data;
         return responseBody;
-    });
+    })
     return result;
+};
 
-  }
-  // top3 좋아요 게시물 불러오기 //
-  export const getFavoriteListRequest = async () => {
-    const result = await axios.get(GET_TOP3_FAVORITE_BOARD_LIST_URL())
+
+// 검색 게시물 //
+export const getSearchBoardRequest = async (searchWord : string) => {
+const result = await axios.get(SEARCH_BOARD_URL(searchWord))
     .then((response) => {
-        const responseBody : GetTop3FavoriteResponseDto = response.data;
+        const responseBody : GetSearchBoardResponseDto = response.data;
         return responseBody;
     })
     .catch((error) => {
         const responseBody : ResponseDto = error.response.data;
         return responseBody;
-    });
-    return result;
-
-  }
-
-  // top3 댓글 게시물 불러오기 //
-  export const getCommentListRequest = async () => {
-    const result = await axios.get(GET_TOP3_COMMENT_BOARD_LIST_URL())
-    .then((response) => {
-        const responseBody : GetTop3CommentResponseDto = response.data;
-        return responseBody;
     })
-    .catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        return responseBody;
-    });
     return result;
-
-  }
-
-  // top3 조회수 게시물 불러오기 //
-  export const getViewListRequest = async () => {
-    const result = await axios.get(GET_TOP3_VIEW_BOARD_LIST_URL())
-    .then((response) => {
-        const responseBody : GetTop3ViewResponseDto = response.data;
-        return responseBody;
-    })
-    .catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        return responseBody;
-    });
-    return result;
-
-  }
-
-  // 게시물 불러오기 최신순 //
-  export const getBoardListCurrentRequest = async (section : number) => {
-    const result = await axios.get(GET_BOARD_LIST_CURRENT(section))
-    .then((response) => {
-        const responseBody : GetBoardListResponeDto = response.data;
-        return responseBody;
-    })
-    .catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        return responseBody;
-    });
-    return result;
-  }
-
-  // 게시물 불러오기 좋아요 //
-  export const getBoardListFavoriteRequest = async (section : number) => {
-    const result = await axios.get(GET_BOARD_LIST_FAVORITE(section))
-    .then((response) => {
-        const responseBody : GetBoardListResponeDto = response.data;
-        return responseBody;
-    })
-    .catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        return responseBody;
-    });
-    return result;
-  }
-
-
-  // 게시물 불러오기 댓글 //
-  export const getBoardListCommentRequest = async (section : number) => {
-    const result = await axios.get(GET_BOARD_LIST_COMMENT(section))
-    .then((response) => {
-        const responseBody : GetBoardListResponeDto = response.data;
-        return responseBody;
-    })
-    .catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        return responseBody;
-    });
-    return result;
-  }
-
-  // 게시물 불러오기 조회수 //
-  export const getBoardListViewRequest = async (section : number) => {
-    const result = await axios.get(GET_BOARD_LIST_VIEW(section))
-    .then((response) => {
-        const responseBody : GetBoardListResponeDto = response.data;
-        return responseBody;
-    })
-    .catch((error) => {
-        const responseBody : ResponseDto = error.response.data;
-        return responseBody;
-    });
-    return result;
-  }
-
-  // 좋아요 버튼 //
-  export const putFavoriteRequest = async (favoriteBoardNumber: number | string, token: string) => {
-    const result = await axios.put(PUT_FAVORITE_URL(favoriteBoardNumber), {}, { headers: { Authorization: `Bearer ${token}` } })
-    .then((response) => {
-      const responseBody: PutFavoriteResponseDto = response.data;
-      const { code } = responseBody;
-      return code;
-    })
-    .catch((error) => {
-      const responseBody: ResponseDto = error.response.data;
-      const { code } = responseBody;
-      return code;
-    });
-    return result;
-  }
-
-  // 게시물 좋아요 리스트 //
-  export const getBoardFavoriteListRequest = async (favoriteBoardNumber: number | string) => {
-    const result = await axios.get(GET_FAVORITE_LIST_URL(favoriteBoardNumber))
-    .then((response) => {
-      const responseBody: GetFavoriteListResponseDto = response.data;
-      return responseBody;
-    })
-    .catch((error) => {
-      const responseBody: ResponseDto = error.response.data;
-      return responseBody;
-    });
-    return result;
-  }
-  
-  // 게시물 댓글 리스트 //
-  export const getBoardCommentListRequest = async (commentBoardNumber: number | string) => {
-    const result = await axios.get(GET_COMMENT_LIST_URL(commentBoardNumber))
-    .then((response) => {
-      const responseBody: GetCommentListResponseDto = response.data;
-      return responseBody;
-    })
-    .catch((error) => {
-      const responseBody: ResponseDto = error.response.data;
-      return responseBody;
-    });
-    return result;
-  }
-
-  // 댓글 작성 //
-  export const postCommentRequest = async (commentBoardNumber : number | string, data: PostCommentRequestDto, token: string) => {
-    const result = await axios.post(POST_COMMENT_URL(commentBoardNumber), data, { headers: { Authorization: `Bearer ${token}` } })
-        .then((response) => {
-            const responseBody : PostBoardResponseDto = response.data;
-            const {code} = responseBody;
-            return code;
-        })
-        .catch((error) => {
-            const responseBody : ResponseDto = error.response.data;
-            const {code} = responseBody;
-            return code;
-        })
-        return result;
-  }
-
-  // 댓글 삭제 //
-  export const deleteCommentRequest = async (commentNumber : number | string, token: string) => {
-    const result = await axios.delete(DELETE_COMMENT_URL(commentNumber), { headers: { Authorization: `Bearer ${token}` } })
-        .then((response) => {
-            const responseBody : DeleteCommentResponseDto = response.data;
-            return responseBody;
-        })
-        .catch((error) => {
-            const responseBody : ResponseDto = error.response.data;
-            return responseBody;
-        })
-        return result;
-  };
-
-
-  // 검색 게시물 //
-  export const getSearchBoardRequest = async (searchWord : string) => {
-    const result = await axios.get(SEARCH_BOARD_URL(searchWord))
-        .then((response) => {
-            const responseBody : GetSearchBoardResponseDto = response.data;
-            return responseBody;
-        })
-        .catch((error) => {
-            const responseBody : ResponseDto = error.response.data;
-            return responseBody;
-        })
-        return result;
-  }
+}

@@ -13,12 +13,14 @@ public class CommentListResponseDto {
   private String contents;
   private String writeDatetime;
   private String profileImageUrl;
+  private int commentNumber;
 
   public CommentListResponseDto(CommentListResultSet resultSet) {
     this.nickname = resultSet.getNickname();
     this.contents = resultSet.getContents();
     this.writeDatetime = resultSet.getWriteDatetime();
     this.profileImageUrl = resultSet.getProfileImageUrl();
+    this.commentNumber = resultSet.getCommentNumber();
   }
 
   public static List<CommentListResponseDto> copyList(List<CommentListResultSet> resultSets) {

@@ -7,5 +7,6 @@ public interface CommentListResultSet {
   String getNickname();
   String getWriteDatetime();
   String getContents();
+  int getCommentNumber();
 
 }

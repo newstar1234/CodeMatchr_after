@@ -19,7 +19,8 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
     "U.user_profile_image_url AS profileImageUrl, " +
     "U.user_nickname AS nickname, " +
     "C.comment_contents AS contents, " +
-    "C.comment_write_datetime AS writeDatetime " +
+    "C.comment_write_datetime AS writeDatetime, " +
+    "C.comment_number AS commentNumber " +
     "FROM Comment AS C INNER JOIN user AS U " +
     "ON C.comment_user_email = U.user_email " +
     "WHERE comment_board_number = ?1 " + 

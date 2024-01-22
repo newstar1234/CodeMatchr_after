@@ -8,7 +8,6 @@ import com.project.codematchr.dto.response.board.DeleteCommentResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardListResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardResponseDto;
 import com.project.codematchr.dto.response.board.GetCommentListResponseDto;
-import com.project.codematchr.dto.response.board.GetCommentResponseDto;
 import com.project.codematchr.dto.response.board.GetFavoriteListResponseDto;
 import com.project.codematchr.dto.response.board.GetSearchBoardResponseDto;
 import com.project.codematchr.dto.response.board.GetTop3CommentListResponseDto;
@@ -61,5 +60,4 @@ public interface BoardService {
 
     ResponseEntity<? super DeleteCommentResponseDto> deleteComment(String userEmail, Integer commentNumber);
 
-    ResponseEntity<? super GetCommentResponseDto> getComment(Integer commentNumber);
 }

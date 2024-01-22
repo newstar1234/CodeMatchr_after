@@ -14,7 +14,6 @@ import com.project.codematchr.dto.response.board.FavoriteListResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardListResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardResponseDto;
 import com.project.codematchr.dto.response.board.GetCommentListResponseDto;
-import com.project.codematchr.dto.response.board.GetCommentResponseDto;
 import com.project.codematchr.dto.response.board.GetFavoriteListResponseDto;
 import com.project.codematchr.dto.response.board.GetSearchBoardResponseDto;
 import com.project.codematchr.dto.response.board.GetTop3CommentListResponseDto;
@@ -500,25 +499,5 @@ public class BoardServiceImplement implements BoardService {
 
     }
 
-
-    @Override
-    public ResponseEntity<? super GetCommentResponseDto> getComment(Integer commentNumber) {
-
-        CommentEntity commentEntity = null;
-
-        try {
-
-            commentEntity = commentRepository.findByCommentNumber(commentNumber);
-            if(commentEntity == null) return GetCommentResponseDto.noExistedCommentNumber();
-
-            commentRepository.save(commentEntity);
-
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseDto.databaseError();
-        }
-        return GetCommentResponseDto.success(commentEntity);
-
-    }
 
 }
