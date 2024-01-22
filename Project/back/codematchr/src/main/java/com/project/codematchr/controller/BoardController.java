@@ -19,6 +19,7 @@ import com.project.codematchr.dto.response.board.DeleteCommentResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardListResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardResponseDto;
 import com.project.codematchr.dto.response.board.GetCommentListResponseDto;
+import com.project.codematchr.dto.response.board.GetCommentResponseDto;
 import com.project.codematchr.dto.response.board.GetFavoriteListResponseDto;
 import com.project.codematchr.dto.response.board.GetSearchBoardResponseDto;
 import com.project.codematchr.dto.response.board.GetTop3CommentListResponseDto;
@@ -189,6 +190,14 @@ public class BoardController {
         @PathVariable Integer commentNumber
     ){
         ResponseEntity<? super DeleteCommentResponseDto> response = boardService.deleteComment(userEmail, commentNumber);
+        return response;
+    }
+
+    @GetMapping("/comment/{commentNumber}")
+    public ResponseEntity<? super GetCommentResponseDto> getComment(
+        @PathVariable Integer commentNumber
+    ) {
+        ResponseEntity<? super GetCommentResponseDto> response = boardService.getComment(commentNumber);
         return response;
     }
 
