@@ -23,7 +23,7 @@ import GetTop3FavoriteResponseDto from 'src/interfaces/response/board/getTop3Fav
 import GetTop3CommentResponseDto from 'src/interfaces/response/board/getTop3Comment.response.dto';
 import GetTop3ViewResponseDto from 'src/interfaces/response/board/getTop3View.response.dto';
 import DeleteBoardResponseDto from 'src/interfaces/response/board/delete-board.response.dto';
-import { GetBoardListResponeDto, GetCommentListResponseDto, GetFavoriteListResponseDto } from 'src/interfaces/response/board';
+import { DeleteCommentResponseDto, GetBoardListResponeDto, GetCommentListResponseDto, GetFavoriteListResponseDto } from 'src/interfaces/response/board';
 import PutFavoriteResponseDto from 'src/interfaces/response/board/put-favorite.response.dto';
 import { PostCommentRequestDto } from 'src/interfaces/request/board';
 import GetCurrentRoomListResponseDto from 'src/interfaces/response/room/get-current-room-list.response.dto';
@@ -103,6 +103,8 @@ const PUT_FAVORITE_URL = (favoriteBoardNumber: number | string) => `${API_DOMAIN
 
 // 댓글 작성 //
 const POST_COMMENT_URL = (commentBoardNumber : number | string) => `${API_DOMAIN}/board/${commentBoardNumber}/comment`;
+// 댓글 삭제 //
+const DELETE_COMMENT_URL = (commentNumber : number | string) => `${API_DOMAIN}/board/comment/${commentNumber}`;
 
 // 검색 게시물 //
 const SEARCH_BOARD_URL = (searchWord : string ) => `${API_DOMAIN}/board/search/${searchWord}`;
@@ -657,6 +659,20 @@ export const uploadFileRequest = async (data: FormData) => {
         })
         return result;
   }
+
+  // 댓글 삭제 //
+  export const deleteCommentRequest = async (commentNumber : number | string, token: string) => {
+    const result = await axios.delete(DELETE_COMMENT_URL(commentNumber), { headers: { Authorization: `Bearer ${token}` } })
+        .then((response) => {
+            const responseBody : DeleteCommentResponseDto = response.data;
+            return responseBody;
+        })
+        .catch((error) => {
+            const responseBody : ResponseDto = error.response.data;
+            return responseBody;
+        })
+        return result;
+  };
 
 
   // 검색 게시물 //

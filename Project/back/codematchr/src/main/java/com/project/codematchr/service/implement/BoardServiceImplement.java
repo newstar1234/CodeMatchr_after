@@ -9,6 +9,7 @@ import com.project.codematchr.dto.request.board.PostcommentRequestDto;
 import com.project.codematchr.dto.response.board.BoardListResponseDto;
 import com.project.codematchr.dto.response.board.CommentListResponseDto;
 import com.project.codematchr.dto.response.board.DeleteBoardResponseDto;
+import com.project.codematchr.dto.response.board.DeleteCommentResponseDto;
 import com.project.codematchr.dto.response.board.FavoriteListResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardListResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardResponseDto;
@@ -469,6 +470,32 @@ public class BoardServiceImplement implements BoardService {
         }
 
         return GetBoardListResponseDto.success(boardList);
+
+    }
+
+
+    @Override
+    public ResponseEntity<? super DeleteCommentResponseDto> deleteComment(String userEmail, Integer commentNumber) {
+        
+        try {
+
+            boolean hasWriterEmail = commentRepository.existsByCommentUserEmail(userEmail);
+            if(!hasWriterEmail) return DeleteCommentResponseDto.noExistedUserEmail();
+            
+            CommentEntity commentEntity = commentRepository.findByCommentNumber(commentNumber);
+            if(commentEntity == null) return DeleteCommentResponseDto.noExistedBoardNumber();
+            
+            boolean equalWriter = commentEntity.getCommentUserEmail().equals(userEmail);
+            if(!equalWriter) return DeleteCommentResponseDto.noPermission();
+
+            commentRepository.delete(commentEntity);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+
+        return DeleteCommentResponseDto.success();
 
     }
 

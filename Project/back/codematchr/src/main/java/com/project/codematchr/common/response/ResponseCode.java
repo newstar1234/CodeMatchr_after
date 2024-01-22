@@ -27,6 +27,8 @@ public interface ResponseCode {
     String NO_PERMISSION = "NP";
 
     String NO_EXISTED_BOARD_NUMBER = "NB";
+    
+    String NO_EXISTED_COMMENT_NUMBER = "NCN";
 
     String NO_EXISTED_COMPARE_RESULT_NUMBER = "NC";
 

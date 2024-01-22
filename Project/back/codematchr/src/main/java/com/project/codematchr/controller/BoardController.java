@@ -15,6 +15,7 @@ import com.project.codematchr.dto.request.board.PatchBoardRequestDto;
 import com.project.codematchr.dto.request.board.PostBoardRequestDto;
 import com.project.codematchr.dto.request.board.PostcommentRequestDto;
 import com.project.codematchr.dto.response.board.DeleteBoardResponseDto;
+import com.project.codematchr.dto.response.board.DeleteCommentResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardListResponseDto;
 import com.project.codematchr.dto.response.board.GetBoardResponseDto;
 import com.project.codematchr.dto.response.board.GetCommentListResponseDto;
@@ -179,6 +180,15 @@ public class BoardController {
         @PathVariable Integer section
     ){
         ResponseEntity<? super GetBoardListResponseDto> response = boardService.getBoardCommentList(section);
+        return response;
+    }
+
+    @DeleteMapping("/comment/{commentNumber}")
+    public ResponseEntity<? super DeleteCommentResponseDto> deleteComment(
+        @AuthenticationPrincipal String userEmail,
+        @PathVariable Integer commentNumber
+    ){
+        ResponseEntity<? super DeleteCommentResponseDto> response = boardService.deleteComment(userEmail, commentNumber);
         return response;
     }
 

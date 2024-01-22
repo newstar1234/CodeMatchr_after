@@ -24,4 +24,9 @@ public class GetCommentListResponseDto extends ResponseDto {
     return ResponseEntity.status(HttpStatus.OK).body(result);
   }
 
+  public static ResponseEntity<ResponseDto> noExistedCommentNumber() {
+    ResponseDto result = new ResponseDto(ResponseCode.NO_EXISTED_COMMENT_NUMBER, ResponseMessage.NO_EXISTED_COMMENT_NUMBER);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
+  }
+
 }

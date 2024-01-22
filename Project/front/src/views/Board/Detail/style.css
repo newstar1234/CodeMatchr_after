@@ -348,10 +348,27 @@
     background-color: rgba(0,0,0,0.01);
 
     border-radius: 5px;
-
 }
 
+.comment-list-item-delete-box {
+    display: flex;
+}
 
+.comment-list-item-delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 36px;
+    height: 25px;
+    
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50px;
+
+    background-color: rgba(148, 120, 134, 0.3);
+
+    cursor: pointer;
+}
 
 .comment-list-write-box-wrap {
     width: 1370px;
@@ -412,15 +429,17 @@
 
 .comment-list-write-button-box {
     display: flex;
-
-    justify-content: center;
-    align-items: center;
 }
 
 .comment-list-write-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 75px;
     height: 75px;
 
+    border: 0.1px solid rgba(0,0,0,0.7);
     border-radius: 15px;
 
     font-size: 20px;

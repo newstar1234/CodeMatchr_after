@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import {useCookies } from 'react-cookie';
 
-import { deleteBoardRequest, getBoardCommentListRequest, getBoardFavoriteListRequest, getBoardRequest, postCommentRequest, putFavoriteRequest } from 'src/apis';
+import { deleteBoardRequest, deleteCommentRequest, getBoardCommentListRequest, getBoardFavoriteListRequest, getBoardRequest, postCommentRequest, putFavoriteRequest } from 'src/apis';
 import Pagination from 'src/components/Pagination';
 import { BOARD_LIST_PATH, BOARD_UPDATE_PATH, COUNT_BY_PAGE_COMMENT, MAIN_PATH } from 'src/constants';
 import { usePagination } from 'src/hooks';
@@ -10,7 +10,7 @@ import {  useUserStore } from 'src/store';
 import { dateFormat } from 'src/utils';
 import { PostCommentRequestDto } from 'src/interfaces/request/board';
 import ResponseDto from 'src/interfaces/response/response.dto';
-import { GetBoardResponseDto } from 'src/interfaces/response/board';
+import { DeleteCommentResponseDto, GetBoardResponseDto } from 'src/interfaces/response/board';
 import GetFavoriteListResponseDto, { FavoriteListResponseDto } from 'src/interfaces/response/board/get-favorite-list.response.dto';
 import GetCommentListResponseDto, { CommentListResponseDto } from 'src/interfaces/response/board/get-comment-list.response.dto';
 import './style.css';
@@ -18,7 +18,7 @@ import './style.css';
 export default function BoardDetail() {
 
     // 게시물 path //
-    const {boardNumber} = useParams();
+    const { boardNumber } = useParams();
 
     // 로그인 유저 //
     const {user} = useUserStore();
@@ -142,8 +142,20 @@ export default function BoardDetail() {
         if(!boardNumber) return;
         getBoardCommentListRequest(boardNumber).then(getBoardCommentListResponseHandler);
         setComment('');
-        
     }
+
+    // 댓글 삭제 응답 //
+    const deleteCommentResponseHandler = (result : DeleteCommentResponseDto | ResponseDto) => {
+        const { code } = result;
+        if (code === 'NE') alert('존재하지 않는 사용자 이메일입니다.');
+        if (code === 'NB') alert('존재하지 않는 게시물입니다.');
+        if (code === 'NP') alert('권한이 없습니다.');
+        if (code === 'VF') alert('잘못된 입력입니다.');
+        if (code === 'DE') alert('데이터베이스 에러입니다.');
+        if (code !== 'SU') return;
+        
+        alert('댓글 삭제 성공');
+      }
 
     // Enter Key 누름 처리 //
     const onEnterKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -187,13 +199,17 @@ export default function BoardDetail() {
         const data : PostCommentRequestDto = {
             commentContents : comment
         }
-        setComment('');
         postCommentRequest(boardNumber, data, token ).then(postCommentResponseHandler);
+        setComment('');
     }
 
+    // 댓글 삭제 버튼 클릭 //
+    const onDeleteCommentClickHandler = () => {
+        // console.log(commentNumber);
+        // if(!commentNumber) return;
+    };
   
     // 게시물 번호가 바뀌면 랜더링 //
-    
     useEffect(() => {
         if(!boardNumber) {
             alert('게시물 번호를 다시 확인해주세요.');
@@ -301,6 +317,9 @@ export default function BoardDetail() {
                                 </div>
                             </div>
                             <div className='comment-list-item-comment'>{item.contents}</div>
+                            <div className='comment-list-item-delete-box' onClick={onDeleteCommentClickHandler} >
+                                <div className='comment-list-item-delete-button'>{'삭제'}</div>
+                            </div>
                         </div>
                     ))}
                     {pageCommentList.length !== 0 && (

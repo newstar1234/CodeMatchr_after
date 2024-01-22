@@ -10,6 +10,9 @@ import com.project.codematchr.entity.resultSet.CommentListResultSet;
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Integer>{
   
+  boolean existsByCommentUserEmail(String commentUserEmail);
+  CommentEntity findByCommentNumber(int commentNumber);
+
   @Query(
     value = 
     "SELECT " + 

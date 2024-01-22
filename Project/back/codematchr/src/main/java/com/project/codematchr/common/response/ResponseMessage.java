@@ -27,6 +27,8 @@ public interface ResponseMessage {
 
     String NO_EXISTED_BOARD_NUMBER = "No Existed Board Number";
 
+    String NO_EXISTED_COMMENT_NUMBER = "No Existed Comment Number";
+
     String NO_EXISTED_COMPARE_RESULT_NUMBER = "No Existed Compare Result Number";
 
     String NO_EXISTED_COMPARE_RESULT = "No Exsited Compare Result";
