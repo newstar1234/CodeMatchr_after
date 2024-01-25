@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {useCookies } from 'react-cookie';
 
 import { deleteBoardRequest,  getBoardCommentListRequest, getBoardFavoriteListRequest, getBoardRequest, postCommentRequest, putFavoriteRequest } from 'src/apis';
+import CommentListItem from 'src/components/CommentListItem';
 import Pagination from 'src/components/Pagination';
 import { BOARD_LIST_PATH, BOARD_UPDATE_PATH, COUNT_BY_PAGE_COMMENT, MAIN_PATH } from 'src/constants';
 import { usePagination } from 'src/hooks';
@@ -14,7 +15,6 @@ import { GetBoardResponseDto } from 'src/interfaces/response/board';
 import GetFavoriteListResponseDto, { FavoriteListResponseDto } from 'src/interfaces/response/board/get-favorite-list.response.dto';
 import GetCommentListResponseDto, { CommentListResponseDto } from 'src/interfaces/response/board/get-comment-list.response.dto';
 import './style.css';
-import CommentListItem from 'src/components/CommentListItem';
 
 export default function BoardDetail() {
 
@@ -234,10 +234,6 @@ useEffect(() => {
     setFavorite(favorited !== -1);
 }, [favoriteList]);
 
-// 댓글 리스트 변경시 실행 //
-useEffect(() => {
-
-}, [pageCommentList, currentCommentList]);
 
 // 게시물 번호,  유저정보 바뀌면 실행//
 useEffect(() => {

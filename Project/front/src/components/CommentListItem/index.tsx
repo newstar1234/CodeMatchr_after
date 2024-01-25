@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CommentListResponseDto } from '../../interfaces/response/board/get-comment-list.response.dto';
 import './style.css';
 import { useCookies } from 'react-cookie';
@@ -14,6 +14,7 @@ export default function CommentListItem({ item }: Props) {
 
 const { nickname, contents, writeDatetime, profileImageUrl, commentNumber } = item;
 
+const [comments, setComments] = useState<boolean>(false);
 
 // Cookies //
 const [cookies, setCookie] = useCookies();
@@ -46,6 +47,7 @@ const deleteCommentResponseHandler = (result : DeleteCommentResponseDto | Respon
   if (code === 'DE') alert('데이터베이스 에러입니다.');
   if (code !== 'SU') return;
   
+  setComments(true);
   alert('댓글 삭제 성공');
 }
 
@@ -61,6 +63,10 @@ const onDeleteCommentClickHandler = () => {
   deleteCommentRequest(commentNumber, token).then(deleteCommentResponseHandler);
 };
 
+// 댓글이 삭제되면 댓글삭제응답함수가 true가 됨. 이때 comments가 true면 null을 반환하므로 다시 랜더링 //
+if (comments) {
+  return null;
+}
 
 return (
   <div className='comment-list-item-box'>
@@ -76,7 +82,7 @@ return (
     <div className='comment-list-item-delete-box' onClick={onDeleteCommentClickHandler} >
         <div className='comment-list-item-delete-button'>삭제</div>
     </div>
-</div>
+  </div>
   
-)
+  )
 }
