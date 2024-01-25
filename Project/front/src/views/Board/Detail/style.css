@@ -290,163 +290,87 @@
 
 
 
+/* 옮겨야 함 */
 /* comment list */
-.comment-list-item-box{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 1340px;
-    height: 100px;
-
-    border-bottom: 0.5px solid rgba(0,0,0,0.1);
-
-}
-
-.comment-list-item-writer-profile{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-.comment-list-item-profile-image{
-    margin: 5px;
-
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-
-    background-repeat: none;
-    background-position: 50% 50%;
-    background-size: 100% 100%;
-}
-
-.comment-list-item-writer-data{
-    margin-left: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.omment-list-item-writer-nickname{
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.comment-list-item-write-time{
-    font-size: 12px;
-}
-
-.comment-list-item-comment{
-    margin-left: 30px;
-    width: 1100px;
-    height: 80px;
-
-    display: flex;
-    align-items: center;
-
-    background-color: rgba(0,0,0,0.01);
-
-    border-radius: 5px;
-}
-
-.comment-list-item-delete-box {
-    display: flex;
-}
-
-.comment-list-item-delete-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 36px;
-    height: 25px;
-    
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 50px;
-
-    background-color: rgba(148, 120, 134, 0.3);
-
-    cursor: pointer;
-}
 
 .comment-list-write-box-wrap {
     width: 1370px;
     height: 150px;
-
+  
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-.comment-list-write-box {
+  }
+  
+  .comment-list-write-box {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.comment-list-write {
+  }
+  
+  .comment-list-write {
     width: 100px;
     height: 48px;
     border-radius: 46px;
-
+  
     background-color: #000000;
-
+  
     color: #ffffff;
     font-size: 18px;
     font-weight: 500;
-
+  
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
-
-}
-
-.comment-list-write-comment-box {
+  
+  }
+  
+  .comment-list-write-comment-box {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.comment-list-write-comment-input {
+  }
+  
+  .comment-list-write-comment-input {
     width: 1000px;
     height: 100px;
-
+  
     display: flex;
     
     justify-content: center;
     align-items: center;
-
+  
     border-radius: 25px;
     border-color: rgba(0,0,0,0.1);
-
-
+  
+  
     font-size: 20px;
     font-weight: 500;
-}
-
-.comment-list-write-button-box {
+  }
+  
+  .comment-list-write-button-box {
     display: flex;
-}
-
-.comment-list-write-button {
+  }
+  
+  .comment-list-write-button {
     display: flex;
     justify-content: center;
     align-items: center;
-
+  
     width: 75px;
     height: 75px;
-
+  
     border: 0.1px solid rgba(0,0,0,0.7);
     border-radius: 15px;
-
+  
     font-size: 20px;
     font-weight: 500;
-}
-
-.comment-list-write-button:hover{
+  }
+  
+  .comment-list-write-button:hover{
     cursor: pointer;
-}
+  }
+  
 

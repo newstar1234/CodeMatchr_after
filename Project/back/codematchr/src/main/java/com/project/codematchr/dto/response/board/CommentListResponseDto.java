@@ -9,18 +9,18 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CommentListResponseDto {
   
+  private int commentNumber;
   private String nickname;
   private String contents;
   private String writeDatetime;
   private String profileImageUrl;
-  private int commentNumber;
 
   public CommentListResponseDto(CommentListResultSet resultSet) {
+    this.commentNumber = resultSet.getCommentNumber();
     this.nickname = resultSet.getNickname();
     this.contents = resultSet.getContents();
     this.writeDatetime = resultSet.getWriteDatetime();
     this.profileImageUrl = resultSet.getProfileImageUrl();
-    this.commentNumber = resultSet.getCommentNumber();
   }
 
   public static List<CommentListResponseDto> copyList(List<CommentListResultSet> resultSets) {

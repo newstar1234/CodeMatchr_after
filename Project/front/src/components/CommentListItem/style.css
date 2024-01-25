@@ -1,4 +1,95 @@
-.comment-list-item-box {
-  display: inline-block;
-  margin: 15px 0;
+/* comment list */
+.comment-list-item-box{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1340px;
+  height: 100px;
+
+  border-bottom: 0.5px solid rgba(0,0,0,0.1);
+
 }
+
+.comment-list-item-writer-profile{
+  flex: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.comment-list-item-profile-image{
+  margin: 5px;
+
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+
+  background-repeat: none;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+}
+
+.comment-list-item-writer-data {
+  margin-left: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.omment-list-item-writer-nickname{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.comment-list-item-writer-divider {
+  color: rgba(0,0,0,0.2);
+}
+
+.comment-list-item-write-time{
+  display: flex;
+  width: 50px;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.comment-list-item-comment{
+  margin-left: 30px;
+  width: 1100px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+
+  background-color: rgba(0,0,0,0.01);
+
+  border-radius: 5px;
+}
+
+.comment-list-item-delete-box {
+  display: flex;
+}
+
+.comment-list-item-delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 36px;
+  height: 25px;
+  
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 50px;
+
+  background-color: rgba(148, 120, 134, 0.3);
+
+  cursor: pointer;
+}
+

@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from '
 import { useNavigate, useParams } from 'react-router-dom';
 import {useCookies } from 'react-cookie';
 
-import { deleteBoardRequest, deleteCommentRequest, getBoardCommentListRequest, getBoardFavoriteListRequest, getBoardRequest, postCommentRequest, putFavoriteRequest } from 'src/apis';
+import { deleteBoardRequest,  getBoardCommentListRequest, getBoardFavoriteListRequest, getBoardRequest, postCommentRequest, putFavoriteRequest } from 'src/apis';
 import Pagination from 'src/components/Pagination';
 import { BOARD_LIST_PATH, BOARD_UPDATE_PATH, COUNT_BY_PAGE_COMMENT, MAIN_PATH } from 'src/constants';
 import { usePagination } from 'src/hooks';
@@ -10,16 +10,16 @@ import {  useUserStore } from 'src/store';
 import { dateFormat } from 'src/utils';
 import { PostCommentRequestDto } from 'src/interfaces/request/board';
 import ResponseDto from 'src/interfaces/response/response.dto';
-import { DeleteCommentResponseDto, GetBoardResponseDto } from 'src/interfaces/response/board';
+import { GetBoardResponseDto } from 'src/interfaces/response/board';
 import GetFavoriteListResponseDto, { FavoriteListResponseDto } from 'src/interfaces/response/board/get-favorite-list.response.dto';
 import GetCommentListResponseDto, { CommentListResponseDto } from 'src/interfaces/response/board/get-comment-list.response.dto';
 import './style.css';
+import CommentListItem from 'src/components/CommentListItem';
 
 export default function BoardDetail() {
 
 // 게시물 path //
 const { boardNumber } = useParams();
-const { commentNumber } = useParams();
 
 // 로그인 유저 //
 const {user} = useUserStore();
@@ -48,6 +48,7 @@ const [favorite, setFavorite] = useState<boolean>(false);
 
 // 댓글 상태 //
 const [comment, setComment] = useState<string>('');
+
 
 
 // 댓글 작성 버튼 Ref 상태 //
@@ -96,7 +97,7 @@ const getFavoriteResponseHandler = (responseBody: GetFavoriteListResponseDto | R
 
 // 댓글 리스트 불러오기 //
 const getBoardCommentListResponseHandler = (responseBody: GetCommentListResponseDto | ResponseDto) => {
-    const { code } = responseBody;
+    const { code } = responseBody as GetCommentListResponseDto;
 
     if (code === 'VF') alert('잘못된 게시물번호입니다.');
     if (code === 'DE') alert('데이터베이스 에러입니다.');
@@ -109,6 +110,7 @@ const getBoardCommentListResponseHandler = (responseBody: GetCommentListResponse
     setCurrentCommentList(commentList);
     getPageCommentList(commentList);
     changeSection(commentList.length, COUNT_BY_PAGE_COMMENT);
+
     }
 
 // 게시물 삭제 응답 //
@@ -147,18 +149,6 @@ const postCommentResponseHandler = (code : string) => {
     setComment('');
 }
 
-// 댓글 삭제 응답 //
-const deleteCommentResponseHandler = (result : DeleteCommentResponseDto | ResponseDto) => {
-    const { code } = result;
-    if (code === 'NE') alert('존재하지 않는 사용자 이메일입니다.');
-    if (code === 'NB') alert('존재하지 않는 게시물입니다.');
-    if (code === 'NP') alert('권한이 없습니다.');
-    if (code === 'VF') alert('잘못된 입력입니다.');
-    if (code === 'DE') alert('데이터베이스 에러입니다.');
-    if (code !== 'SU') return;
-    
-    alert('댓글 삭제 성공');
-}
 
 // Enter Key 누름 처리 //
 const onEnterKeyDownHandler = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -207,18 +197,6 @@ const onCommentClickHandler = () => {
     setComment('');
 }
 
-// 댓글 삭제 버튼 클릭 //
-const onDeleteCommentClickHandler = (result : CommentListResponseDto) => {
-    const { commentNumber } = result;
-    
-    console.log(commentNumber);
-
-    const token = cookies.accessToken;
-    
-    if(!commentNumber) return;
-    deleteCommentRequest(commentNumber, token).then(deleteCommentResponseHandler);
-};
-
 // 게시물 번호가 바뀌면 랜더링 //
 useEffect(() => {
     if(!boardNumber) {
@@ -255,6 +233,12 @@ useEffect(() => {
     const favorited = favoriteList.findIndex((item) => item.userEmail === user?.userEmail);
     setFavorite(favorited !== -1);
 }, [favoriteList]);
+
+// 댓글 리스트 변경시 실행 //
+useEffect(() => {
+
+}, [pageCommentList, currentCommentList]);
+
 // 게시물 번호,  유저정보 바뀌면 실행//
 useEffect(() => {
     const favorited = favoriteList.findIndex((item) => item.userEmail === user?.userEmail);
@@ -317,21 +301,7 @@ return (
         <div className='board-detail-comment-list'>
             <div className='board-detail-comment-list-title'>댓글{currentCommentList.length}</div>
             <div className='board-detail-comment-list-user'>
-                {pageCommentList.map((item) => (
-                    <div className='comment-list-item-box'>
-                        <div className='comment-list-item-writer-profile'>
-                            <div className='comment-list-item-profile-image' style={{ backgroundImage: `url(${item.profileImageUrl})` }} ></div>
-                            <div className='comment-list-item-writer-data'>
-                                <div className='comment-list-item-writer-nickname'>{item.nickname}</div>
-                                <div className='comment-list-item-write-time'>{ dateFormat(item.writeDatetime)}</div>
-                            </div>
-                        </div>
-                        <div className='comment-list-item-comment'>{item.contents}</div>
-                        <div className='comment-list-item-delete-box'  >
-                            <div className='comment-list-item-delete-button'>{'삭제'}</div>
-                        </div>
-                    </div>
-                ))}
+                {pageCommentList.map((item) => (<CommentListItem item={item}/>))}
                 {pageCommentList.length !== 0 && (
                 <Pagination 
                     totalPage={totalPage} 

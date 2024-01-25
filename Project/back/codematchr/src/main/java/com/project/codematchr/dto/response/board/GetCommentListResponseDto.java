@@ -29,4 +29,5 @@ public class GetCommentListResponseDto extends ResponseDto {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
   }
 
+
 }
