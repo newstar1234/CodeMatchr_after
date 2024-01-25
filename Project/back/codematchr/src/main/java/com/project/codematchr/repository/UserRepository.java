@@ -26,19 +26,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
   ) 
   List<UserEntity> getFavoriteList(Integer boardNumber);
 
-  @Query(value = 
-  "SELECT " +
-	"user_email, " +
-	"user_nickname, " +
-	"user_state_message, " +
-	"user_profile_image_url " +
-	"FROM `user` " +
-	"WHERE user_email IN ( " +
-    "SELECT friend_email " +
-    "FROM friend " +
-    ") ",
-    nativeQuery = true
-  )
-  List<UserEntity> getFriendTltalList(String friendMyEmail);
+  
   
 }

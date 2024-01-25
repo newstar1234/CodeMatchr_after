@@ -7,11 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PostAddFriendRequestDto {
+public class PostFriendAddRequestDto {
     
     @NotBlank
     private String friendMyEmail;
-
+    @NotBlank
     private String friendEmail;
 
 }

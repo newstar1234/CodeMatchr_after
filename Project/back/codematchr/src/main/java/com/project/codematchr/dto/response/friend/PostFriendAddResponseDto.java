@@ -9,19 +9,19 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class PostAddFriendResponseDto extends ResponseDto {
+public class PostFriendAddResponseDto extends ResponseDto {
     
-    public PostAddFriendResponseDto(String code, String message) {
+    public PostFriendAddResponseDto(String code, String message) {
         super(code, message);
     }
 
-    public static ResponseEntity<PostAddFriendResponseDto> success() {
-        PostAddFriendResponseDto result = new PostAddFriendResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
+    public static ResponseEntity<PostFriendAddResponseDto> success() {
+        PostFriendAddResponseDto result = new PostFriendAddResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     public static ResponseEntity<ResponseDto> noExistedUserEmail() {
-        PostAddFriendResponseDto result = new PostAddFriendResponseDto(ResponseCode.NO_EXISTED_USER_EMAIL, ResponseMessage.NO_EXISTED_USER_EMAIL);
+        PostFriendAddResponseDto result = new PostFriendAddResponseDto(ResponseCode.NO_EXISTED_USER_EMAIL, ResponseMessage.NO_EXISTED_USER_EMAIL);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     }
 

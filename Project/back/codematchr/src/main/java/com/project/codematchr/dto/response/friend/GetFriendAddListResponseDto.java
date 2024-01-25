@@ -10,17 +10,17 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class GetAddFriendListResponseDto extends ResponseDto {
+public class GetFriendAddListResponseDto extends ResponseDto {
     
     public List<FriendListResponseDto> friendList;
 
-    public GetAddFriendListResponseDto(String code, String message,List<FriendListResponseDto> friendList ){
+    public GetFriendAddListResponseDto(String code, String message,List<FriendListResponseDto> friendList ){
         super(code, message);
         this.friendList = friendList;
     }
 
-    public static ResponseEntity<GetAddFriendListResponseDto> success(List<FriendListResponseDto> friendList){
-        GetAddFriendListResponseDto result = new GetAddFriendListResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS, friendList);
+    public static ResponseEntity<GetFriendAddListResponseDto> success(List<FriendListResponseDto> friendList){
+        GetFriendAddListResponseDto result = new GetFriendAddListResponseDto(ResponseCode.SUCCESS, ResponseMessage.SUCCESS, friendList);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 

@@ -23,9 +23,8 @@ public class FriendViewEntity {
   
   @Id
   private String friendEmail;
-
-  private String userNickname;
-  private String userStateMessage;
-  private String userProfileImageUrl;
+  private String nickname;
+  private String stateMessage;
+  private String profileImageUrl;
 
 }

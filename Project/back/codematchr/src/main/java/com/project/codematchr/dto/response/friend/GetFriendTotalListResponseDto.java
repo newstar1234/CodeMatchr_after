@@ -24,9 +24,4 @@ public class GetFriendTotalListResponseDto extends ResponseDto {
     return ResponseEntity.status(HttpStatus.OK).body(result);
   }
 
-  public static ResponseEntity<ResponseDto> noExistedUserEmail() {
-    GetFriendTotalListResponseDto result = new GetFriendTotalListResponseDto(ResponseCode.NO_EXISTED_USER_EMAIL, ResponseMessage.NO_EXISTED_USER_EMAIL, null);
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
-  }
-
 }
