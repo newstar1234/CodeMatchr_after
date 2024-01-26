@@ -23,7 +23,7 @@ public class FriendEntity {
   @Id
   private String friendEmail;
 
-  public FriendEntity(PostFriendAddRequestDto dto) {
+  public FriendEntity(String friendMyEmail, PostFriendAddRequestDto dto) {
     this.friendMyEmail = dto.getFriendMyEmail();
     this.friendEmail = dto.getFriendEmail();
   }

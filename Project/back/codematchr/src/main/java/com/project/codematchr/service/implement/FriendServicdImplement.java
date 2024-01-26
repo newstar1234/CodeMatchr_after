@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.project.codematchr.dto.request.friend.PostFriendAddRequestDto;
 import com.project.codematchr.dto.response.ResponseDto;
 import com.project.codematchr.dto.response.friend.FriendListResponseDto;
-import com.project.codematchr.dto.response.friend.GetFriendTotalListResponseDto;
+import com.project.codematchr.dto.response.friend.GetFriendListResponseDto;
 import com.project.codematchr.dto.response.friend.PostFriendAddResponseDto;
 import com.project.codematchr.entity.FriendEntity;
 import com.project.codematchr.entity.FriendViewEntity;
@@ -27,7 +27,7 @@ public class FriendServicdImplement implements FriendService {
   private final UserRepository userRepository;
   
   @Override
-  public ResponseEntity<? super GetFriendTotalListResponseDto> getFriendTotalList(String friendMyEmail) {
+  public ResponseEntity<? super GetFriendListResponseDto> getFriendList(String friendMyEmail) {
 
     List<FriendListResponseDto> friendList = null;
 
@@ -41,18 +41,17 @@ public class FriendServicdImplement implements FriendService {
       exception.printStackTrace();
       return ResponseDto.databaseError();
     }
-    return GetFriendTotalListResponseDto.success(friendList);
+    return GetFriendListResponseDto.success(friendList);
 
   }
 
   @Override
-  public ResponseEntity<? super PostFriendAddResponseDto> postFriendAdd(PostFriendAddRequestDto dto) {
+  public ResponseEntity<? super PostFriendAddResponseDto> postFriendAdd(String friendMyEmail, PostFriendAddRequestDto dto) {
 
     try {
 
-      FriendEntity friendEntity = new FriendEntity(dto);
+      FriendEntity friendEntity = new FriendEntity(friendMyEmail, dto);
       friendRepository.save(friendEntity);
-
       
     } catch (Exception exception) {
       exception.printStackTrace();

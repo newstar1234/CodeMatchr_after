@@ -9,6 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class FriendListResponseDto {
 
+  // todo : friendMyEmail를 넘겨줄 필요가 있는지 다시 생각해보기 //
   private String friendMyEmail;
   private String friendEmail;
   private String nickname;

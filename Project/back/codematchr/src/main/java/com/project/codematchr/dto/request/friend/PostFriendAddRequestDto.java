@@ -11,7 +11,8 @@ public class PostFriendAddRequestDto {
     
     @NotBlank
     private String friendMyEmail;
-    @NotBlank
+
+    
     private String friendEmail;
 
 }

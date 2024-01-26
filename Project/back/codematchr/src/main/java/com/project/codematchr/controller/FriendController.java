@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.codematchr.dto.request.friend.PostFriendAddRequestDto;
-import com.project.codematchr.dto.response.friend.GetFriendTotalListResponseDto;
+import com.project.codematchr.dto.response.friend.GetFriendListResponseDto;
 import com.project.codematchr.dto.response.friend.PostFriendAddResponseDto;
 import com.project.codematchr.service.FriendService;
 
@@ -24,18 +24,19 @@ public class FriendController {
   private final FriendService friendService;
 
   @GetMapping("/{friendMyEmail}")
-  public ResponseEntity<? super GetFriendTotalListResponseDto> getFriendTotalList (
+  public ResponseEntity<? super GetFriendListResponseDto> getFriendTotalList (
     @PathVariable String friendMyEmail
   ) {
-    ResponseEntity<? super GetFriendTotalListResponseDto> response = friendService.getFriendTotalList(friendMyEmail);
+    ResponseEntity<? super GetFriendListResponseDto> response = friendService.getFriendList(friendMyEmail);
     return response;
   }
 
-  @PostMapping("/{}")
+  @PostMapping("/{friendMyEmail}")
   public ResponseEntity<? super PostFriendAddResponseDto> postFriendAdd(
+    @AuthenticationPrincipal String friendMyEmail,
     @RequestBody @Valid PostFriendAddRequestDto requestBody
   ) {
-    ResponseEntity<? super PostFriendAddResponseDto> response = friendService.postFriendAdd(requestBody);
+    ResponseEntity<? super PostFriendAddResponseDto> response = friendService.postFriendAdd(friendMyEmail, requestBody);
     return response;
   }
  
