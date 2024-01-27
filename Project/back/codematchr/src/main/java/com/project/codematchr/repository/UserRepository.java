@@ -27,5 +27,4 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
   List<UserEntity> getFavoriteList(Integer boardNumber);
 
   
-  
 }
